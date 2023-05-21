@@ -8,16 +8,15 @@ import 'package:mytest/utils/global.colors.dart';
 class SplashView extends StatelessWidget {
   const SplashView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 10), () {
-      Get.to( LoginView());
+    Timer(const Duration(seconds: 3), () {
+      Get.to(LoginView());
     });
     return Scaffold(
       backgroundColor: GlobalColors.mainColor,
       body: const Center(
-        child: Text('Logo',
+        child: Text('NCDs',
             style: TextStyle(
               color: Colors.white,
               fontSize: 35,
@@ -25,6 +24,5 @@ class SplashView extends StatelessWidget {
             )),
       ),
     );
-    
   }
 }

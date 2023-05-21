@@ -23,49 +23,49 @@ class SocialLogin extends StatelessWidget {
         Row(
           children: [
             //// Google
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.1),
-                      blurRadius: 10,
-                    ),
-                  ],
-                ),
-                child: SvgPicture.asset(
-                  'asset/imagas/google.svg',
-                  height: 30,
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     height: 55,
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(6),
+            //       boxShadow: [
+            //         BoxShadow(
+            //           color: Colors.black.withOpacity(.1),
+            //           blurRadius: 10,
+            //         ),
+            //       ],
+            //     ),
+            //     child: SvgPicture.asset(
+            //       'asset/imagas/google.svg',
+            //       height: 30,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(width: 10),
 
             //// Facebook
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(.1),
-                      blurRadius: 10,
-                    ),
-                  ],
-                ),
-                child: SvgPicture.asset(
-                  'asset/imagas/facebook.svg',
-                  height: 30,
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     height: 55,
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(6),
+            //       boxShadow: [
+            //         BoxShadow(
+            //           color: Colors.black.withOpacity(.1),
+            //           blurRadius: 10,
+            //         ),
+            //       ],
+            //     ),
+            //     child: SvgPicture.asset(
+            //       'asset/imagas/facebook.svg',
+            //       height: 30,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ],
