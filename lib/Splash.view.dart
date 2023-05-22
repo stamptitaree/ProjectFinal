@@ -10,18 +10,39 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 10), () {
       Get.to(LoginView());
     });
     return Scaffold(
       backgroundColor: GlobalColors.mainColor,
-      body: const Center(
-        child: Text('NCDs',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-            )),
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/moreX.png',
+                  width: MediaQuery.of(context).size.width,
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'NCDs',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Image.asset(
+                  'assets/images/moreX.png',
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

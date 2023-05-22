@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class SocialLogin extends StatelessWidget {
@@ -20,52 +19,23 @@ class SocialLogin extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        Row(
+        Column(
           children: [
-            //// Google
-            // Expanded(
-            //   child: Container(
-            //     alignment: Alignment.center,
-            //     height: 55,
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(6),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color: Colors.black.withOpacity(.1),
-            //           blurRadius: 10,
-            //         ),
-            //       ],
-            //     ),
-            //     child: SvgPicture.asset(
-            //       'asset/imagas/google.svg',
-            //       height: 30,
-            //     ),
-            //   ),
-            // ),
+            Text(
+              'ยังไม่มีบัญชี ?',
+              style: TextStyle(
+                color: GlobalColors.textColor,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             const SizedBox(width: 10),
-
-            //// Facebook
-            // Expanded(
-            //   child: Container(
-            //     alignment: Alignment.center,
-            //     height: 55,
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(6),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color: Colors.black.withOpacity(.1),
-            //           blurRadius: 10,
-            //         ),
-            //       ],
-            //     ),
-            //     child: SvgPicture.asset(
-            //       'asset/imagas/facebook.svg',
-            //       height: 30,
-            //     ),
-            //   ),
-            // ),
+            const Text(
+              'สมัครบัญชีผู้ใช้งาน',
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ],

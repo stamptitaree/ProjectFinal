@@ -25,7 +25,7 @@ class LoginView extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    'Logo',
+                    'NCDs',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: GlobalColors.mainColor,
@@ -68,7 +68,7 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 10),
                     const ButtonGlobal(),
                     const SizedBox(height: 25),
-                    SocialLogin()
+                    const SocialLogin()
                   ],
                 ),
               ],
