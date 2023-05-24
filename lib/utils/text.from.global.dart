@@ -19,7 +19,7 @@ class TextFormGlobal extends StatelessWidget {
       height: 55,
       padding: const EdgeInsets.only(top: 3, left: 15),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xffEEF3F8),
           borderRadius: BorderRadius.circular(6),
           boxShadow: [
             BoxShadow(

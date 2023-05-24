@@ -21,11 +21,18 @@ class LoginView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 80),
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/moreX.png',
+                    // width: MediaQuery.of(context).size.width,
+                  ),
+                ),
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    'NCDs',
+                    'N C D s',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: GlobalColors.mainColor,
@@ -34,9 +41,16 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/moreX.png',
+                    // width: MediaQuery.of(context).size.width,
+                  ),
+                ),
                 const SizedBox(height: 50),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Login to you accoun',
@@ -67,7 +81,7 @@ class LoginView extends StatelessWidget {
 
                     const SizedBox(height: 10),
                     const ButtonGlobal(),
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 80),
                     const SocialLogin()
                   ],
                 ),

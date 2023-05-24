@@ -21,9 +21,12 @@ class SplashView extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/moreX.png',
-                  width: MediaQuery.of(context).size.width,
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/moreX.png',
+                    // width: MediaQuery.of(context).size.width,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -35,9 +38,16 @@ class SplashView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Image.asset(
-                  'assets/images/moreX.png',
-                  width: MediaQuery.of(context).size.width,
+                // Image.asset(
+                //   'assets/images/moreX.png',
+                //   width: MediaQuery.of(context).size.width,
+                // ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/moreX.png',
+                    // width: MediaQuery.of(context).size.width,
+                  ),
                 ),
               ],
             ),
