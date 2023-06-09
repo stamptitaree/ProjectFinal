@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mytest/pages/register.dart';
+import 'package:mytest/pages/auth/register.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:get/get.dart';
 

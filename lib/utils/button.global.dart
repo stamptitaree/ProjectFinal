@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mytest/pages/home/home_menu.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class ButtonGlobal extends StatelessWidget {
@@ -10,7 +12,7 @@ class ButtonGlobal extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('login');
+         Get.to(const HomeMenu());
       },
       child: Container(
         alignment: Alignment.center,
