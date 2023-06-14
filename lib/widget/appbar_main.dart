@@ -7,22 +7,22 @@ class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: GlobalColors.mainColor,
-      actions: <Widget>[
-        IconButton(
-          onPressed: () {
-            Get.back();
-          },
-         icon: const Icon(Icons.logout_outlined)
-         )
-      ],
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Icons.menu
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: GlobalColors.mainColor,
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(Icons.logout_outlined))
+        ],
+        leading: IconButton(
+          onPressed: () {Scaffold.of(context).openDrawer();},
+          icon: const Icon(Icons.menu),
         ),
       ),
+
     );
   }
 

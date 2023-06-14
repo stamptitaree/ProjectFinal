@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytest/pages/home/home_menu.dart';
 import 'package:mytest/utils/global.colors.dart';
+import 'package:mytest/widget/navbar_main.dart';
 
 class ButtonGlobal extends StatelessWidget {
   const ButtonGlobal({super.key});
@@ -12,7 +13,7 @@ class ButtonGlobal extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-         Get.to(const HomeMenu());
+         Get.to(const BottomNavigationBarExample());
       },
       child: Container(
         alignment: Alignment.center,

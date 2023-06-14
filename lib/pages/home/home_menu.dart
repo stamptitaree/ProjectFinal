@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:mytest/pages/home/addpill.dart';
 import 'package:mytest/widget/appbar_main.dart';
-import 'package:mytest/widget/navbar_main.dart';
+import 'package:mytest/widget/buttom_main.dart';
+import 'package:mytest/widget/drawer_main.dart';
 
-class HomeMenu extends StatefulWidget {
+class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
 
-  @override
-  State<HomeMenu> createState() => _HomeMenuState();
-}
-
-class _HomeMenuState extends State<HomeMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,21 +18,103 @@ class _HomeMenuState extends State<HomeMenu> {
             child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(15.0),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-             ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              PressableContainer(
+                onPressed: () {
+                  Get.to(Addpill());
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      size: 28,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      '+เพิ่มยา',
+                      style: TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              PressableContainer(
+                onPressed: () {
+                  print(0);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      size: 28,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'รายการ',
+                      style: TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              PressableContainer(
+                onPressed: () {
+                  print(0);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      size: 28,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'ประวัติ',
+                      style: TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              PressableContainer(
+                onPressed: () {
+                  print(0);
+                },
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      size: 28,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'ข้อมูลส่วนตัว',
+                      style: TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         )),
       ),
-      bottomNavigationBar: NavbarWidget(
-        currentIndex: 0, // รายการ Home ถูกเลือกเป็นค่าเริ่มต้น
-        onTabSelected: (index) {
-          // ฟังก์ชันที่จะทำงานเมื่อมีการเลือกรายการใน Navbar
-          print('Selected tab: $index');
-        },
-      ),
-    
+      drawer: const DrawerMain(),
     );
   }
 }
