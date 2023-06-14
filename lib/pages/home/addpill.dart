@@ -16,7 +16,7 @@ class _AddpillState extends State<Addpill> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppbarBack(),
-      body: SafeArea(
+      body: SingleChildScrollView(
           child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(20.0),
