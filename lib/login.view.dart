@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytest/Splash.view.dart';
 import 'package:mytest/utils/button.global.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/utils/social.login.dart';
@@ -19,35 +20,10 @@ class LoginView extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(15.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 80),
-                Container(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/moreX.png',
-                    // width: MediaQuery.of(context).size.width,
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'N C D s',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: GlobalColors.mainColor,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/moreX.png',
-                    // width: MediaQuery.of(context).size.width,
-                  ),
-                ),
+                Applogo(),
                 const SizedBox(height: 50),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

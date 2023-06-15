@@ -13,107 +13,138 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppbarMain(),
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Container(
+      body: SafeArea(
+          child: Center(
+        child: Container(
+          // alignment: Alignment.center,
+          // color: Colors.blueGrey,
           width: double.infinity,
-          padding: const EdgeInsets.all(15.0),
+          height: MediaQuery.of(context).size.height * 0.65,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               PressableContainer(
                 onPressed: () {
-                  Get.to(Addpill());
+                  Get.to(const Addpill());
                 },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.add,
-                      size: 28,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      '+เพิ่มยา',
-                      style: TextStyle(fontSize: 26.0),
-                    ),
-                  ],
+                child: const Padding(
+                  padding:  EdgeInsets.only(left: 30, right: 30),
+                  child:  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(
+                          Icons.add,
+                          size: 28,
+                          color: Color.fromARGB(255, 197, 21, 21),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'เพิ่มยา',
+                          style: TextStyle(fontSize: 26.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               PressableContainer(
                 onPressed: () {
-                  print(0);
+                  Get.to(const Addpill());
                 },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.add,
-                      size: 28,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'รายการ',
-                      style: TextStyle(fontSize: 26.0),
-                    ),
-                  ],
+                child: const Padding(
+                  padding:  EdgeInsets.only(left: 30, right: 30),
+                  child:  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(
+                          Icons.add,
+                          size: 28,
+                          color: Color.fromARGB(255, 197, 21, 21),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'รายการยา',
+                          style: TextStyle(fontSize: 26.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               PressableContainer(
                 onPressed: () {
-                  print(0);
+                  Get.to(const Addpill());
                 },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.add,
-                      size: 28,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'ประวัติ',
-                      style: TextStyle(fontSize: 26.0),
-                    ),
-                  ],
+                child: const Padding(
+                  padding:  EdgeInsets.only(left: 30, right: 30),
+                  child:  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(
+                          Icons.add,
+                          size: 28,
+                          color: Color.fromARGB(255, 197, 21, 21),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'ประวัติยา',
+                          style: TextStyle(fontSize: 26.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               PressableContainer(
                 onPressed: () {
-                  print(0);
+                  Get.to(const Addpill());
                 },
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.add,
-                      size: 28,
-                      color: Colors.black,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'ข้อมูลส่วนตัว',
-                      style: TextStyle(fontSize: 26.0),
-                    ),
-                  ],
+                child: const Padding(
+                  padding:  EdgeInsets.only(left: 30, right: 30),
+                  child:  Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(
+                          Icons.add,
+                          size: 28,
+                          color: Color.fromARGB(255, 197, 21, 21),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'ข้อมูลส่วนตัว',
+                          style: TextStyle(fontSize: 26.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-        )),
-      ),
+        ),
+      )),
       drawer: const DrawerMain(),
     );
   }

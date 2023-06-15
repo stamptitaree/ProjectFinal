@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:mytest/Splash.view.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/utils/text.from.global.dart';
 
@@ -20,8 +21,15 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController drugallergy = TextEditingController();
 
-  List<String> list = <String>['โรคเบาหวาน', 'โรคหลอดเลือดสมอง', 'โรคถุงลมโป่งพอง', 'โรคความดันโลหิตสูง','โรคไขมันในเลือดสูง','โรคไขมันในเลือดสูง','โรคไตเรื้อรัง'];
-  late String dropdownValue = list.first;
+  List<String> list = <String>[
+    'โรคเบาหวาน',
+    'โรคหลอดเลือดสมอง',
+    'โรคถุงลมโป่งพอง',
+    'โรคความดันโลหิตสูง',
+    'โรคไขมันในเลือดสูง',
+    'โรคไตเรื้อรัง'
+  ];
+  String? dropdownValue;
 
   // @override
   // void initState() {
@@ -38,12 +46,10 @@ class _RegisterState extends State<Register> {
         leading: IconButton(
           onPressed: () {},
           icon: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: Color.fromARGB(255, 245, 43, 29)
-            ),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded,
+                color: Color.fromARGB(255, 245, 43, 29)),
             onPressed: () {
-               Get.back();
+              Get.back();
             },
           ),
         ),
@@ -54,34 +60,9 @@ class _RegisterState extends State<Register> {
           width: double.infinity,
           padding: const EdgeInsets.all(15.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/images/moreX.png',
-                  // width: MediaQuery.of(context).size.width,
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'N C D s',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: GlobalColors.mainColor,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                child: Image.asset(
-                  'assets/images/moreX.png',
-                  // width: MediaQuery.of(context).size.width,
-                ),
-              ),
+              Applogo(color: GlobalColors.mainColor),
               const SizedBox(height: 50),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,21 +105,31 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 20),
                   Container(
+                    height: 55,
+                    padding: const EdgeInsets.only(top: 3, left: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 7,
+                        ),
+                      ],
+                      color: Color(0xffEEF3F8),
+                    ),
                     child: DropdownButton<String>(
                       isExpanded: true,
-                      value: dropdownValue,
-                      icon: const Icon(Icons.arrow_downward),
+                      value: dropdownValue ?? list.first,
+                      // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2,
-                        color: Colors.deepPurpleAccent,
-                      ),
+                      style: const TextStyle(color: Colors.red),
+                      underline: Container(),
                       onChanged: (String? value) {
                         // This is called when the user selects an item.
                         setState(() {
                           dropdownValue = value!;
                         });
+                        // print(value);
                       },
                       items: list.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -147,14 +138,21 @@ class _RegisterState extends State<Register> {
                         );
                       }).toList(),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormGlobal(
+                    controller: drugallergy,
+                    text: 'ประวัติการแพ้ยา',
+                    obscure: false,
+                    textInputType: TextInputType.text,
+                  ),
+                  const SizedBox(height: 20),
                 ],
               )
             ],
           ),
         )),
       ),
-    
     );
   }
 }

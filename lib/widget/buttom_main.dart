@@ -30,11 +30,7 @@ class PressableContainer extends StatelessWidget {
           ),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.center,
-          child: child,
-        ),
+        child: child,
       ),
     );
   }

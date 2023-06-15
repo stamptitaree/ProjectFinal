@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mytest/utils/text_input.dart';
 import 'package:mytest/widget/adppbar_back.dart';
+import 'package:mytest/widget/appbar_main.dart';
 
 class Addpill extends StatefulWidget {
   const Addpill({super.key});
@@ -15,7 +16,7 @@ class _AddpillState extends State<Addpill> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppbarBack(),
+      appBar: AppbarMain(),
       body: SingleChildScrollView(
           child: Container(
         width: double.infinity,
