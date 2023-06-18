@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
 
@@ -37,7 +38,9 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   children: [
                     Text(
                       'Email',
-                      style: TextStyle(fontSize: 18,),
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
                     Expanded(
                       child: Padding(
@@ -46,7 +49,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           readOnly: true,
                           enabled: false,
                           decoration: InputDecoration(
-                            hintText: 'oomsinboyyyy@gmail.com',
+                              hintText: 'oomsinboyyyy@gmail.com',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide:
@@ -81,14 +84,17 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   ],
                 ),
               ),
-              Divider(color: const Color.fromARGB(66, 0, 0, 0),),
+              Divider(
+                color: const Color.fromARGB(66, 0, 0, 0),
+              ),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Row(
                   children: [
                     Text(
                       'ชื่อ',
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     Expanded(
                       child: Padding(
@@ -96,7 +102,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                         child: TextFormField(
                           enabled: false,
                           decoration: InputDecoration(
-                            hintText: 'สุดหล่อ',
+                              hintText: 'สุดหล่อ',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide:
@@ -113,7 +119,8 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   children: [
                     Text(
                       'นามสกุล',
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     Expanded(
                       child: Padding(
@@ -121,7 +128,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                         child: TextFormField(
                           enabled: false,
                           decoration: InputDecoration(
-                            hintText: 'สมมุติ',
+                              hintText: 'สมมุติ',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide:
@@ -138,7 +145,8 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   children: [
                     Text(
                       'ประวัติแพ้ยา',
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     Expanded(
                       child: Padding(
@@ -146,7 +154,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                         child: TextFormField(
                           enabled: false,
                           decoration: InputDecoration(
-                            hintText: '-',
+                              hintText: '-',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide:
@@ -163,15 +171,16 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   children: [
                     Text(
                       'โรคประจำตัว',
-                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false, 
+                          enabled: false,
                           decoration: InputDecoration(
-                            hintText: 'ความดันโลหิต',
+                              hintText: 'ความดันโลหิต',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide:
@@ -182,6 +191,31 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      color: GlobalColors.mainColor,
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: const Text('ยืนยัน',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        )),
+                  ),
+                ),
+              )
             ],
           ),
         )),

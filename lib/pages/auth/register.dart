@@ -147,6 +147,28 @@ class _RegisterState extends State<Register> {
                     textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        color: GlobalColors.mainColor,
+                        borderRadius: BorderRadius.circular(6),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: const Text('ยืนยันการสมัคร',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ),
+                  )
                 ],
               )
             ],
