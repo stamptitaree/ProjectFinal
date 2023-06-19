@@ -19,6 +19,8 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController nameController = TextEditingController();
 
+  final TextEditingController lastController = TextEditingController();
+
   final TextEditingController drugallergy = TextEditingController();
 
   List<String> list = <String>[
@@ -97,10 +99,18 @@ class _RegisterState extends State<Register> {
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
+                  
                   const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: nameController,
-                    text: 'ชื่อ-นามสกุล',
+                    text: 'ชื่อ',
+                    obscure: false,
+                    textInputType: TextInputType.text,
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormGlobal(
+                    controller: lastController,
+                    text: 'นามสกุล',
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
