@@ -45,7 +45,7 @@ class LoginView extends StatelessWidget {
                       textInputType: TextInputType.emailAddress,
                     ),
 
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
 
                     //// Password Input ///
                     TextFormGlobal(
@@ -55,7 +55,7 @@ class LoginView extends StatelessWidget {
                       obscure: true,
                     ),
 
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
                     const ButtonGlobal(),
                     const SizedBox(height: 80),
                     const SocialLogin()

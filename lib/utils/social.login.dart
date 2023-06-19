@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytest/pages/auth/forgot_password.dart';
 import 'package:mytest/pages/auth/register.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:get/get.dart';
@@ -15,13 +16,26 @@ class SocialLogin extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text(
-                'ยังไม่มีบัญชี ?',
-                style: TextStyle(
-                    color: GlobalColors.textColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18),
+              GestureDetector(
+                onTap: () {
+                  Get.to(Forgotpassword());
+                },
+                child: Text(
+                  'ลืมรหัสผ่าน',
+                  style: TextStyle(
+                      color: GlobalColors.textColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18),
+                ),
               ),
+              // const SizedBox(height: 10),
+              // Text(
+              //   'ยังไม่มีบัญชี ?',
+              //   style: TextStyle(
+              //       color: GlobalColors.textColor,
+              //       fontWeight: FontWeight.w600,
+              //       fontSize: 18),
+              // ),
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {

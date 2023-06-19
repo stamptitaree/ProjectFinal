@@ -26,7 +26,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 72,
+                radius: 50,
                 backgroundColor: Colors.blueGrey,
                 // backgroundImage: NetworkImage(
                 //     'https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5nRRVgnzYSSwUoPM7rigVHaj4QhdURLfyt90hBPNzf89n8vZ5bp.jpg'),

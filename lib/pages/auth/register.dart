@@ -31,6 +31,14 @@ class _RegisterState extends State<Register> {
   ];
   String? dropdownValue;
 
+  List<String> listSex = <String>[
+    'ชาย',
+    'หญิง',
+    'ไม่ระบุ',
+  ];
+  String? dropdownValueSex;
+
+
   // @override
   // void initState() {
   //   super.initState();
@@ -63,7 +71,7 @@ class _RegisterState extends State<Register> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Applogo(color: GlobalColors.mainColor),
-              const SizedBox(height: 50),
+              // const SizedBox(height: 50),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -75,35 +83,71 @@ class _RegisterState extends State<Register> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: emailController,
                     text: 'Email',
                     obscure: false,
                     textInputType: TextInputType.emailAddress,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: passwordController,
                     text: 'Password',
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: nameController,
                     text: 'ชื่อ-นามสกุล',
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
+                  Container(
+                    height: 55,
+                    padding: const EdgeInsets.only(top: 3, left: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 7,
+                        ),
+                      ],
+                      color: Color(0xffEEF3F8),
+                    ),
+                    child: DropdownButton<String>(
+                      isExpanded: true,
+                      value: dropdownValueSex ?? listSex.first,
+                      // icon: const Icon(Icons.arrow_downward),
+                      elevation: 16,
+                      style:  TextStyle(color: GlobalColors.textColor),
+                      underline: Container(),
+                      onChanged: (String? value) {
+                        // This is called when the user selects an item.
+                        setState(() {
+                          dropdownValueSex = value!;
+                        });
+                        // print(value);
+                      },
+                      items: listSex.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(height:10),
                   TextFormGlobal(
                     controller: drugallergy,
                     text: 'ประวัติการแพ้ยา',
-                    obscure: false,
+                    obscure: true,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Container(
                     height: 55,
                     padding: const EdgeInsets.only(top: 3, left: 15),
@@ -122,7 +166,7 @@ class _RegisterState extends State<Register> {
                       value: dropdownValue ?? list.first,
                       // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style: const TextStyle(color: Colors.red),
+                      style:  TextStyle(color: GlobalColors.textColor),
                       underline: Container(),
                       onChanged: (String? value) {
                         // This is called when the user selects an item.
@@ -139,14 +183,14 @@ class _RegisterState extends State<Register> {
                       }).toList(),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: drugallergy,
                     text: 'ประวัติการแพ้ยา',
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   InkWell(
                     onTap: () {},
                     child: Container(

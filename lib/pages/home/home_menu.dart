@@ -28,19 +28,19 @@ class HomeMenu extends StatelessWidget {
                 onPressed: () {
                   Get.to(const Addpill());
                 },
-                child: const Padding(
-                  padding:  EdgeInsets.only(left: 30, right: 30),
-                  child:  Stack(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Stack(
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.add,
-                          size: 28,
-                          color: Color.fromARGB(255, 197, 21, 21),
+                        child: Image.asset(
+                          'assets/images/pillsEx.png',
+                          width: 40,
+                          height: 40,
                         ),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text(
                           'เพิ่มยา',
@@ -58,19 +58,19 @@ class HomeMenu extends StatelessWidget {
                 onPressed: () {
                   Get.to(const Addpill());
                 },
-                child: const Padding(
-                  padding:  EdgeInsets.only(left: 30, right: 30),
-                  child:  Stack(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Stack(
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.add,
-                          size: 28,
-                          color: Color.fromARGB(255, 197, 21, 21),
+                        child: Image.asset(
+                          'assets/images/list.png',
+                          width: 28,
+                          height: 28,
                         ),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text(
                           'รายการยา',
@@ -88,19 +88,19 @@ class HomeMenu extends StatelessWidget {
                 onPressed: () {
                   Get.to(const Addpill());
                 },
-                child: const Padding(
-                  padding:  EdgeInsets.only(left: 30, right: 30),
-                  child:  Stack(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Stack(
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.add,
-                          size: 28,
-                          color: Color.fromARGB(255, 197, 21, 21),
+                        child: Image.asset(
+                          'assets/images/pill.png',
+                          width: 28,
+                          height: 28,
                         ),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text(
                           'ประวัติยา',
@@ -118,19 +118,19 @@ class HomeMenu extends StatelessWidget {
                 onPressed: () {
                   Get.to(const Addpill());
                 },
-                child: const Padding(
-                  padding:  EdgeInsets.only(left: 30, right: 30),
-                  child:  Stack(
+                child:  Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Stack(
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Icon(
-                          Icons.add,
-                          size: 28,
-                          color: Color.fromARGB(255, 197, 21, 21),
+                        child: Image.asset(
+                          'assets/images/account.png',
+                          width: 28,
+                          height: 28,
                         ),
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text(
                           'ข้อมูลส่วนตัว',

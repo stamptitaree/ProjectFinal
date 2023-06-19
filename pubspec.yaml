@@ -69,6 +69,13 @@ flutter:
   assets:
     - assets/icons/more.svg
     - assets/images/moreX.png
+    - assets/images/pillsEx.png
+    - assets/images/list.png
+    - assets/images/pill.png
+    - assets/images/account.png
+    - assets/images/listW.png
+    - assets/images/pillW.png
+    - assets/images/accountW.png
   
 
   #An image assets can refer to one or more resolution-specific "variants", see:

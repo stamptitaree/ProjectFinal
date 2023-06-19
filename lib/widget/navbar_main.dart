@@ -44,23 +44,35 @@ class _BottomNavigationBarExampleState
             backgroundColor: GlobalColors.mainColor
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.business),
+            icon: Image.asset(
+              'assets/images/listW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              width: 24,
+              height: 24,
+            ),
             label: 'รายการ',
             backgroundColor: GlobalColors.mainColor,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.school),
+            icon: Image.asset(
+              'assets/images/pillW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              width: 24,
+              height: 24,
+            ),
             label: 'ประวัติ',
             backgroundColor: GlobalColors.mainColor,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.settings),
+           icon: Image.asset(
+              'assets/images/accountW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              width: 26,
+              height: 26,
+            ),
             label: 'ข้อมูลส่วนตัว',
             backgroundColor: GlobalColors.mainColor,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
