@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
     'โรคไขมันในเลือดสูง',
     'โรคไตเรื้อรัง'
   ];
-  String? dropdownValue;
+  String? dropdownValue ;
 
   List<String> listSex = <String>[
     'ชาย',

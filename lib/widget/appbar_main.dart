@@ -3,13 +3,19 @@ import 'package:get/get.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
-  const AppbarMain({super.key});
+  final String title;
+
+  const AppbarMain({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: GlobalColors.mainColor,
+        title: Center(child: Text(title)),
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -18,11 +24,12 @@ class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
               icon: const Icon(Icons.logout_outlined))
         ],
         leading: IconButton(
-          onPressed: () {Scaffold.of(context).openDrawer();},
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
           icon: const Icon(Icons.menu),
         ),
       ),
-
     );
   }
 

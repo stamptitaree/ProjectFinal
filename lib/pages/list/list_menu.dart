@@ -15,7 +15,7 @@ class _ListMenuState extends State<ListMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarMain(),
+      appBar:  AppbarMain(title: 'รายการยา'),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(

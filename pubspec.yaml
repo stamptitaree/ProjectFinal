@@ -76,6 +76,7 @@ flutter:
     - assets/images/listW.png
     - assets/images/pillW.png
     - assets/images/accountW.png
+    - assets/images/edit.png
   
 
   #An image assets can refer to one or more resolution-specific "variants", see:

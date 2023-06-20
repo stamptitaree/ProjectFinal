@@ -14,7 +14,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
-      appBar: const AppbarMain(),
+      appBar:  AppbarMain(title: 'ประวัติยา'),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(

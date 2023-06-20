@@ -16,7 +16,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarMain(),
+      appBar: AppbarMain(title: 'ข้อมูลส่วนตัว'),
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(
@@ -25,11 +25,31 @@ class _PersonalMenuState extends State<PersonalMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.blueGrey,
-                // backgroundImage: NetworkImage(
-                //     'https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5nRRVgnzYSSwUoPM7rigVHaj4QhdURLfyt90hBPNzf89n8vZ5bp.jpg'),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Stack(
+                  children: [
+                    Align(
+                        alignment: Alignment.center,
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.blueGrey,
+                          backgroundImage: NetworkImage(
+                              'https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5nRRVgnzYSSwUoPM7rigVHaj4QhdURLfyt90hBPNzf89n8vZ5bp.jpg'),
+                        )),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Image.asset(
+                          'assets/images/edit.png',
+                          width: 22,
+                          height: 22,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10),
               Padding(
@@ -46,8 +66,8 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          readOnly: true,
-                          enabled: false,
+                          // readOnly: true,
+                          // enabled: false,
                           decoration: InputDecoration(
                               hintText: 'oomsinboyyyy@gmail.com',
                               border: OutlineInputBorder(
@@ -72,7 +92,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false,
+                          // enabled: false,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -100,7 +120,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false,
+                          // enabled: false,
                           decoration: InputDecoration(
                               hintText: 'สุดหล่อ',
                               border: OutlineInputBorder(
@@ -126,7 +146,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false,
+                          // enabled: false,
                           decoration: InputDecoration(
                               hintText: 'สมมุติ',
                               border: OutlineInputBorder(
@@ -152,7 +172,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false,
+                          // enabled: false,
                           decoration: InputDecoration(
                               hintText: '-',
                               border: OutlineInputBorder(
@@ -178,7 +198,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          enabled: false,
+                          // enabled: false,
                           decoration: InputDecoration(
                               hintText: 'ความดันโลหิต',
                               border: OutlineInputBorder(

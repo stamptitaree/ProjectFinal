@@ -12,7 +12,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarMain(),
+      appBar:  AppbarMain(title: 'เมนู'),
       body: SafeArea(
           child: Center(
         child: Container(
@@ -56,7 +56,7 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.to(const Addpill());
+                  // Get.to(const Addpill());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -86,7 +86,7 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.to(const Addpill());
+                  // Get.to(const Addpill());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -116,7 +116,7 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.to(const Addpill());
+                  // Get.to(const Addpill());
                 },
                 child:  Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
