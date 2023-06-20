@@ -53,7 +53,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
               ),
               SizedBox(height: 10),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10,right: 10,top: 10,bottom: 8),
                 child: Row(
                   children: [
                     Text(
@@ -81,7 +81,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10, right: 10, bottom: 5),
                 child: Row(
                   children: [
                     Text(
@@ -108,7 +108,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 color: const Color.fromARGB(66, 0, 0, 0),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10, right: 10, top: 5,bottom: 8),
                 child: Row(
                   children: [
                     Text(
@@ -134,7 +134,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10, right: 10,bottom: 8),
                 child: Row(
                   children: [
                     Text(
@@ -160,7 +160,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10,right: 10,bottom: 8),
                 child: Row(
                   children: [
                     Text(
@@ -186,7 +186,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10,right: 10,bottom: 14),
                 child: Row(
                   children: [
                     Text(
@@ -212,7 +212,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.only(left: 10,right: 10),
                 child: InkWell(
                   onTap: () {},
                   child: Container(
