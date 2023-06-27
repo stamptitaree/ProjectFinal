@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
     'โรคไขมันในเลือดสูง',
     'โรคไตเรื้อรัง'
   ];
-  String? dropdownValue ;
+  String? dropdownValue;
 
   List<String> listSex = <String>[
     'ชาย',
@@ -39,7 +39,6 @@ class _RegisterState extends State<Register> {
     'ไม่ระบุ',
   ];
   String? dropdownValueSex;
-
 
   // @override
   // void initState() {
@@ -99,7 +98,6 @@ class _RegisterState extends State<Register> {
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
-                  
                   const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: nameController,
@@ -129,11 +127,12 @@ class _RegisterState extends State<Register> {
                       color: Color(0xffEEF3F8),
                     ),
                     child: DropdownButton<String>(
+                      hint: Text('เพศ'),
                       isExpanded: true,
-                      value: dropdownValueSex ?? listSex.first,
+                      value: dropdownValueSex,
                       // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style:  TextStyle(color: GlobalColors.textColor),
+                      style: TextStyle(color: GlobalColors.textColor),
                       underline: Container(),
                       onChanged: (String? value) {
                         // This is called when the user selects an item.
@@ -142,7 +141,8 @@ class _RegisterState extends State<Register> {
                         });
                         // print(value);
                       },
-                      items: listSex.map<DropdownMenuItem<String>>((String value) {
+                      items:
+                          listSex.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -150,7 +150,7 @@ class _RegisterState extends State<Register> {
                       }).toList(),
                     ),
                   ),
-                  const SizedBox(height:10),
+                  const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: drugallergy,
                     text: 'ประวัติการแพ้ยา',
@@ -172,11 +172,12 @@ class _RegisterState extends State<Register> {
                       color: Color(0xffEEF3F8),
                     ),
                     child: DropdownButton<String>(
+                      hint: Text('โรค NCDS'),
                       isExpanded: true,
-                      value: dropdownValue ?? list.first,
+                      value: dropdownValue,
                       // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style:  TextStyle(color: GlobalColors.textColor),
+                      style: TextStyle(color: GlobalColors.textColor),
                       underline: Container(),
                       onChanged: (String? value) {
                         // This is called when the user selects an item.
@@ -196,7 +197,7 @@ class _RegisterState extends State<Register> {
                   const SizedBox(height: 10),
                   TextFormGlobal(
                     controller: drugallergy,
-                    text: 'ประวัติการแพ้ยา',
+                    text: 'โรคประจำตัว',
                     obscure: false,
                     textInputType: TextInputType.text,
                   ),
