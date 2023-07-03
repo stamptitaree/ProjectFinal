@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
+import 'package:intl/intl.dart';
 import 'package:mytest/utils/global.colors.dart';
-import 'package:mytest/utils/text_input.dart';
-import 'package:mytest/widget/adppbar_back.dart';
-import 'package:mytest/widget/appbar_main.dart';
 
 class Addpill extends StatefulWidget {
   const Addpill({super.key});
@@ -21,6 +19,23 @@ class _AddpillState extends State<Addpill> {
 
   List<String> listNote = <String>['ก่อนอาหาร', 'หลังอาหาร'];
   String? dropdownValueNote;
+
+  late TextEditingController _textEditingController;
+  late TextEditingController _timeEditingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+    _timeEditingController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    _timeEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +111,9 @@ class _AddpillState extends State<Addpill> {
                       border: Border.all(color: GlobalColors.borderInput),
                     ),
                     child: DropdownButton<String>(
-                      hint: Text('เลือกช่วงเวลา'),
+                      hint: const Text('เลือกช่วงเวลา'),
                       isExpanded: true,
-                      value: dropdownValuePeriod ,
+                      value: dropdownValuePeriod,
                       // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
                       style: TextStyle(color: GlobalColors.textColor),
@@ -136,9 +151,9 @@ class _AddpillState extends State<Addpill> {
                       border: Border.all(color: GlobalColors.borderInput),
                     ),
                     child: DropdownButton<String>(
-                      hint: Text('เลือกหมายเหตุ'),
+                      hint: const Text('เลือกหมายเหตุ'),
                       isExpanded: true,
-                      value: dropdownValueNote ,
+                      value: dropdownValueNote,
                       // icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
                       style: TextStyle(color: GlobalColors.textColor),
@@ -169,6 +184,7 @@ class _AddpillState extends State<Addpill> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -195,20 +211,39 @@ class _AddpillState extends State<Addpill> {
                 const Text('เวลารับประทานยา'),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(
-                          color: GlobalColors.borderInput,
-                          width: 1.0,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(
-                          color: GlobalColors.borderInput,
-                          width: 1.0,
+                  child: InkWell(
+                    onTap: () async {
+                      final TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                      );
+
+                      if (pickedTime != null) {
+                        final formattedTime = pickedTime.format(context);
+                        setState(() {
+                          _timeEditingController.text = formattedTime;
+                        });
+                      }
+                    },
+                    child: IgnorePointer(
+                      child: TextFormField(
+                        controller: _timeEditingController,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -222,20 +257,42 @@ class _AddpillState extends State<Addpill> {
                 const Text('วันที่'),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(
-                          color: GlobalColors.borderInput,
-                          width: 1.0,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide(
-                          color: GlobalColors.borderInput,
-                          width: 1.0,
+                  child: InkWell(
+                    onTap: () async {
+                      final DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2030),
+                      );
+
+                      if (pickedDate != null) {
+                        final formattedDate =
+                            DateFormat('dd-MM-yyyy').format(pickedDate);
+                        setState(() {
+                          _textEditingController.text = formattedDate;
+                        });
+                      }
+                    },
+                    child: IgnorePointer(
+                      child: TextFormField(
+                        controller: _textEditingController,
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
                         ),
                       ),
                     ),
