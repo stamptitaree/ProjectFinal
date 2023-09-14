@@ -5,7 +5,7 @@ import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/utils/text.from.global.dart';
 
 class Forgotpassword extends StatefulWidget {
-  Forgotpassword({Key? key}) : super(key: key);
+  const Forgotpassword({Key? key}) : super(key: key);
 
   @override
   State<Forgotpassword> createState() => _ForgotpasswordState();
@@ -64,6 +64,16 @@ class _ForgotpasswordState extends State<Forgotpassword> {
                     text: 'Email',
                     obscure: false,
                     textInputType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return ("กรุณาใส่อีเมลของคุณ");
+                      }
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return ("กรุณาใส่อีเมลของคุณให้ถูกต้อง");
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 20),
                   InkWell(

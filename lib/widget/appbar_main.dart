@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytest/login.view.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final FirebaseAuth _auth = FirebaseAuth.instance; 
 
-  const AppbarMain({
+  AppbarMain({
     super.key,
     required this.title,
   });
@@ -18,8 +21,9 @@ class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
         title: Center(child: Text(title)),
         actions: <Widget>[
           IconButton(
-              onPressed: () {
-                Get.back();
+              onPressed: () async {
+                await _auth.signOut(); // เรียกใช้งานการออกจากระบบ
+                Get.offAll(LoginView());
               },
               icon: const Icon(Icons.logout_outlined))
         ],

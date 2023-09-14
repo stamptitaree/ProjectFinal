@@ -5,6 +5,7 @@ import 'package:mytest/pages/home/addpill.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/buttom_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
+import 'package:mytest/widget/navbar_main.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -15,7 +16,7 @@ class HomeMenu extends StatelessWidget {
       appBar:  AppbarMain(title: 'เมนู'),
       body: SafeArea(
           child: Center(
-        child: Container(
+        child: SizedBox(
           // alignment: Alignment.center,
           // color: Colors.blueGrey,
           width: double.infinity,
@@ -26,7 +27,7 @@ class HomeMenu extends StatelessWidget {
             children: <Widget>[
               PressableContainer(
                 onPressed: () {
-                  Get.to(const Addpill());
+                  Get.to(() => const Addpill());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -56,7 +57,7 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  // Get.to(const Addpill());
+                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 1));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -86,7 +87,7 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  // Get.to(const Addpill());
+                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 2));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -116,8 +117,9 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  // Get.to(const Addpill());
-                },
+                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 3));
+            
+               },
                 child:  Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Stack(
@@ -145,7 +147,7 @@ class HomeMenu extends StatelessWidget {
           ),
         ),
       )),
-      drawer: const DrawerMain(),
+      drawer:  const DrawerMain(),
     );
   }
 }

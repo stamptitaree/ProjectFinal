@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mytest/pages/history/history_menu.dart';
 import 'package:mytest/pages/home/home_menu.dart';
@@ -7,16 +6,22 @@ import 'package:mytest/pages/personal/personal_menu.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({super.key});
+  final int selectedIndex;
+
+  const BottomNavigationBarExample({Key? key, this.selectedIndex = 0})
+      : super(key: key);
 
   @override
   State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
+      // ignore: no_logic_in_create_state
+      _BottomNavigationBarExampleState(selectedIndex);
 }
 
 class _BottomNavigationBarExampleState
     extends State<BottomNavigationBarExample> {
-  int _selectedIndex = 0;
+  int _selectedIndex;
+
+  _BottomNavigationBarExampleState(this._selectedIndex);
   static const List<Widget> _widgetOptions = <Widget>[
     HomeMenu(),
     ListMenu(),

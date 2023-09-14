@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "407939740626",
+    "firebase_url": "https://drug-3ad17-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "drug-3ad17",
+    "storage_bucket": "drug-3ad17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407939740626:android:8f621ba959828874738e0b",
+        "android_client_info": {
+          "package_name": "com.example.mytest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407939740626-4l0o53k0r5gf3jmrijaent4jf4h90rej.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mytest",
+            "certificate_hash": "935f183d5f8eba7159c677022f5aaa24e3f8bf6c"
+          }
+        },
+        {
+          "client_id": "407939740626-mtm402k964tnk1jbnhh6nflbdpms9a0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR9eOvr8laLmkX0boBKzxVC8MsRRxvrnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "407939740626-mtm402k964tnk1jbnhh6nflbdpms9a0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

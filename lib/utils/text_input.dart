@@ -31,10 +31,10 @@ class TextFormInput extends StatelessWidget {
         controller: controller,
         keyboardType: textInputType,
         obscureText: obscure,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.all(0),
-          hintStyle: const TextStyle(
+          contentPadding: EdgeInsets.all(0),
+          hintStyle: TextStyle(
             height: 1,
           ),
         ),

@@ -23,12 +23,12 @@ class PressableContainer extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Color(0xFFEEF3F8),
+          color: const Color(0xFFEEF3F8),
           border: Border.all(
             width: 1,
-            color: Color.fromARGB(255, 161, 161, 161),
+            color: const Color.fromARGB(255, 161, 161, 161),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: child,
       ),

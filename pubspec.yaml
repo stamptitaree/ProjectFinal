@@ -41,6 +41,10 @@ dependencies:
   flutter_svg: ^2.0.6
   flutter_datetime_picker: ^1.5.1
   intl: ^0.18.1
+  firebase_core: ^2.15.0
+  firebase_auth: ^4.7.2
+  cloud_firestore: ^4.8.4
+  fluttertoast: ^8.2.2
 
 
 dev_dependencies:
@@ -77,6 +81,9 @@ flutter:
     - assets/images/pillW.png
     - assets/images/accountW.png
     - assets/images/edit.png
+    - assets/images/man.png
+    - assets/images/woman.png
+    - assets/images/unknow.png
   
 
   #An image assets can refer to one or more resolution-specific "variants", see:
