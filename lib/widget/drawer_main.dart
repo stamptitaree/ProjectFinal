@@ -133,7 +133,7 @@ class _DrawerMainState extends State<DrawerMain> {
             ),
             ListTile(
               leading: const Icon(Icons.medical_services_outlined),
-              title: const Text('ความรู้เรื่องยา'),
+              title: const Text('ความรู้เรื่องโรค'),
               onTap: () {
                 Get.to(const ListDrug());
               },

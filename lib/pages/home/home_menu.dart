@@ -127,7 +127,7 @@ class HomeMenu extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Image.asset(
-                          'assets/images/account.png',
+                          'assets/images/health.png',
                           width: 28,
                           height: 28,
                         ),
@@ -135,7 +135,7 @@ class HomeMenu extends StatelessWidget {
                       const Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'ข้อมูลส่วนตัว',
+                          'ความรู้เรื่องโรค',
                           style: TextStyle(fontSize: 26.0),
                         ),
                       ),
