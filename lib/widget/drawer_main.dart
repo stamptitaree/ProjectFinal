@@ -73,7 +73,7 @@ class _DrawerMainState extends State<DrawerMain> {
                   if (snapshot.data!) {
                     return Container(
                       width: double.maxFinite,
-                      height: MediaQuery.of(context).size.height * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.34,
                       child: const Center(
                         child: CircularProgressIndicator(),
                       ),
