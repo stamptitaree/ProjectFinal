@@ -10,7 +10,7 @@ import 'package:mytest/widget/navbar_main.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseApi().initNotifications();
+  // await FirebaseApi().initNotifications();
   runApp(const App());
 }
 
@@ -19,11 +19,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Notify(),
+      home: AppNavigator(),
     );
   }
 }
