@@ -50,7 +50,7 @@ class _BottomNavigationBarExampleState
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/listW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              'assets/images/listW.png', 
               width: 24,
               height: 24,
             ),
@@ -59,7 +59,7 @@ class _BottomNavigationBarExampleState
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
-              'assets/images/pillW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              'assets/images/pillW.png', 
               width: 24,
               height: 24,
             ),
@@ -68,7 +68,7 @@ class _BottomNavigationBarExampleState
           ),
           BottomNavigationBarItem(
            icon: Image.asset(
-              'assets/images/accountW.png', // เปลี่ยนเป็นที่อยู่ของรูปภาพในโปรเจคของคุณ
+              'assets/images/accountW.png', 
               width: 26,
               height: 26,
             ),

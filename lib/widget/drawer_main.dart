@@ -123,8 +123,11 @@ class _DrawerMainState extends State<DrawerMain> {
               ),
             ),
             ListTile(
-              // assets/images/accountW.png
-              leading: const Icon(Icons.account_balance_outlined),
+              leading: Image.asset(
+                'assets/images/plus2.png',
+                width: 26,
+                height: 26,
+              ),
               title: const Text('ข้อมูลส่วนตัว'),
               onTap: () {
                 Get.offAll(
@@ -132,14 +135,22 @@ class _DrawerMainState extends State<DrawerMain> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.medical_services_outlined),
+              leading: Image.asset(
+                'assets/images/health.png',
+                width: 26,
+                height: 26,
+              ),
               title: const Text('ความรู้เรื่องโรค'),
               onTap: () {
                 Get.to(const ListDrug());
               },
             ),
             ListTile(
-              leading: const Icon(Icons.logout_outlined),
+              leading: Image.asset(
+                'assets/images/logout1.png',
+                width: 26,
+                height: 26,
+              ),
               title: const Text('Logout'),
               onTap: () async {
                 try {

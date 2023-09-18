@@ -19,14 +19,19 @@ class PersonalMenu extends StatefulWidget {
 class _PersonalMenuState extends State<PersonalMenu> {
   String _uid = '';
   bool obSecurePassword = true;
+  bool isEditing = false;
   late String password;
   final isLoading = StreamController<bool>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final TextEditingController passwordController =
-      TextEditingController(text: '123456');
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
-  bool isEditing = false;
+  final TextEditingController sexController = TextEditingController();
+  final TextEditingController historydrugController = TextEditingController();
+  final TextEditingController diseaseNcdsController = TextEditingController();
+  final TextEditingController congenitalDiseaseController =
+      TextEditingController();
 
   Future<void> findUid() async {
     isLoading.add(true);
@@ -41,29 +46,27 @@ class _PersonalMenuState extends State<PersonalMenu> {
               .collection("users")
               .doc(_uid)
               .get();
+          emailController.text = userSnapshot.get('email');
 
           password = userSnapshot.get('password');
           passwordController.text = password;
 
-          // String firstname = userSnapshot.get('firstname');
           firstnameController.text = userSnapshot.get('firstname');
 
-          // String lastname = userSnapshot.get('lastname');
           lastnameController.text = userSnapshot.get('lastname');
-          print(firstnameController.text);
-          print(lastnameController.text);
-          // String sex = userSnapshot.get('sex');
+
+          sexController.text = userSnapshot.get('sex');
+
+          historydrugController.text = userSnapshot.get('historydrug');
+
+          diseaseNcdsController.text = userSnapshot.get('diseasencds');
+
+          congenitalDiseaseController.text = userSnapshot.get('congenitaldisease') ;
+
           isLoading.add(false);
-          // setState(() {
-          //   _firstname = firstname;
-          //   _lastname = lastname;
-          //   // _sex = sex;
-          // });
-          // print(_firstname);
         }
       }
     });
-    
   }
 
   Future<void> updateFirstNameInFirestore() async {
@@ -94,29 +97,29 @@ class _PersonalMenuState extends State<PersonalMenu> {
               );
             });
         if (decide) {
-          _auth.currentUser!.updatePassword(passwordController.text);
+          await _auth.currentUser!.updatePassword(passwordController.text);
         } else {
           passwordController.text = password;
         }
       }
       await FirebaseFirestore.instance.collection("users").doc(_uid).update({
-        'firstname': firstnameController.text,
-        'lastname': lastnameController.text,
-        'password': passwordController.text
+        'firstname' :  firstnameController.text,
+        'lastname'  :  lastnameController.text,
+        'password'  :  passwordController.text,
+        'sex'       :  sexController.text,
+        'historydrug': historydrugController.text,
+        'diseasencds': diseaseNcdsController.text,
+        'congenitaldisease': congenitalDiseaseController.text,
       });
 
-      // แสดงข้อความแจ้งเตือนด้วย Fluttertoast
       Fluttertoast.showToast(
         msg: "บันทึกเสร็จสมบูรณ์",
-        gravity: ToastGravity.BOTTOM, // ตำแหน่งของข้อความแจ้งเตือน
-        backgroundColor: Colors.green, // สีพื้นหลังข้อความแจ้งเตือน
-        textColor: Colors.white, // สีขอบข้อความแจ้งเตือน
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
       );
       await findUid();
-      //       firstnameController.text = newFirstName;
-      // lastnameController.text  = newLastname;
     } catch (error) {
-      // แสดงข้อความแจ้งเตือนด้วย Fluttertoast หากเกิดข้อผิดพลาดในการบันทึก
       Fluttertoast.showToast(
         msg: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
         gravity: ToastGravity.BOTTOM,
@@ -135,8 +138,6 @@ class _PersonalMenuState extends State<PersonalMenu> {
   void initState() {
     super.initState();
     findUid();
-    // firstnameController.text = _firstname;
-    // lastnameController.text = _lastname;
   }
 
   void toggleEditing() {
@@ -166,6 +167,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      //----------------------- Image and Toggle -----------------------
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: Stack(
@@ -174,9 +176,14 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                 alignment: Alignment.center,
                                 child: CircleAvatar(
                                   radius: 50,
-                                  backgroundColor: Colors.blueGrey,
-                                  backgroundImage: NetworkImage(
-                                      'https://static.thairath.co.th/media/dFQROr7oWzulq5Fa5nRRVgnzYSSwUoPM7rigVHaj4QhdURLfyt90hBPNzf89n8vZ5bp.jpg'),
+                                  backgroundImage: sexController.text == 'ชาย'
+                                      ? const AssetImage(
+                                          'assets/images/man.png')
+                                      : sexController.text == 'หญิง'
+                                          ? const AssetImage(
+                                              'assets/images/woman.png')
+                                          : const AssetImage(
+                                              'assets/images/unknow.png'),
                                 )),
                             Align(
                               alignment: Alignment.centerRight,
@@ -188,28 +195,12 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                   height: 22,
                                 ),
                               ),
-                            ),
-
-                            // isEditing // ตรวจสอบว่ากำลังแก้ไขหรือไม่
-                            //     ? Container() // ถ้ากำลังแก้ไขให้แสดงว่าง
-                            //     : Align(
-                            //         // ถ้าไม่ใช่โหมดแก้ไขให้แสดง text
-                            //         alignment: Alignment.centerRight,
-                            //         child: GestureDetector(
-                            //           onTap: toggleEditing,
-                            //           child: Text(
-                            //             'แก้ไข',
-                            //             style: TextStyle(
-                            //               color: Colors.blue,
-                            //               decoration: TextDecoration.underline,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       ),
+                            ),                    
                           ],
                         ),
                       ),
                       SizedBox(height: 10),
+                      //----------------------- Email -----------------------
                       Padding(
                         padding: EdgeInsets.only(
                             left: 10, right: 10, top: 10, bottom: 8),
@@ -225,10 +216,10 @@ class _PersonalMenuState extends State<PersonalMenu> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: TextFormField(
-                                  // readOnly: true,
-                                  // enabled: false,
+                                  readOnly: true,
+                                  enabled: false,
+                                  controller: emailController,
                                   decoration: InputDecoration(
-                                      hintText: 'oomsinboyyyy@gmail.com',
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -240,6 +231,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           ],
                         ),
                       ),
+                      //----------------------- Password -----------------------
                       Padding(
                         padding:
                             EdgeInsets.only(left: 10, right: 10, bottom: 5),
@@ -290,6 +282,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                       Divider(
                         color: const Color.fromARGB(66, 0, 0, 0),
                       ),
+                      //----------------------- FirstName -----------------------
                       Padding(
                         padding: EdgeInsets.only(
                             left: 10, right: 10, top: 5, bottom: 8),
@@ -319,6 +312,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           ],
                         ),
                       ),
+                      //----------------------- LastName -----------------------
                       Padding(
                         padding:
                             EdgeInsets.only(left: 10, right: 10, bottom: 8),
@@ -348,6 +342,37 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           ],
                         ),
                       ),
+                      //----------------------- Sex -----------------------
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 10, right: 10, bottom: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              'เพศ',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: TextFormField(
+                                    controller: sexController,
+                                    enabled: isEditing,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black38,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //----------------------- Historydrug -----------------------
                       Padding(
                         padding:
                             EdgeInsets.only(left: 10, right: 10, bottom: 8),
@@ -362,9 +387,9 @@ class _PersonalMenuState extends State<PersonalMenu> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: TextFormField(
-                                  // enabled: false,
+                                  controller: historydrugController,
+                                  enabled: isEditing,
                                   decoration: InputDecoration(
-                                      hintText: '-',
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -376,6 +401,36 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           ],
                         ),
                       ),
+                      //----------------------- NCDS -----------------------
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 10, right: 10, bottom: 8),
+                        child: Row(
+                          children: [
+                            Text(
+                              'โรค NCDS',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: TextFormField(
+                                  controller: diseaseNcdsController,
+                                  enabled: isEditing,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.black38))),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //----------------------- Congenitaldisease -----------------------
                       Padding(
                         padding:
                             EdgeInsets.only(left: 10, right: 10, bottom: 14),
@@ -390,9 +445,9 @@ class _PersonalMenuState extends State<PersonalMenu> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: TextFormField(
-                                  // enabled: false,
+                                  controller: congenitalDiseaseController,
+                                  enabled: isEditing,
                                   decoration: InputDecoration(
-                                      hintText: 'ความดันโลหิต',
                                       border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -404,6 +459,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           ],
                         ),
                       ),
+                      //----------------------- Button -----------------------
                       Padding(
                         padding: EdgeInsets.only(left: 10, right: 10),
                         child: InkWell(

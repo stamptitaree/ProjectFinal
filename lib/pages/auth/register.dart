@@ -40,9 +40,11 @@ class _RegisterState extends State<Register> {
   List<String> list = <String>[
     'โรคเบาหวาน',
     'โรคหลอดเลือดสมอง',
+    'โรคหัวใจ',
     'โรคถุงลมโป่งพอง',
     'โรคความดันโลหิตสูง',
     'โรคไขมันในเลือดสูง',
+    'โรคอ้วนลงพุง'
     'โรคไตเรื้อรัง'
   ];
   String? dropdownValue;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
+import 'dart:math';
 
 class ListMenu extends StatefulWidget {
   const ListMenu({super.key});
@@ -14,6 +15,15 @@ class ListMenu extends StatefulWidget {
 
 class _ListMenuState extends State<ListMenu> {
   final DateTime _selectedDate = DateTime.now();
+  final Random random = Random();
+  
+  List<String> avatarImages = <String>[
+    'assets/images/pills.png',
+    'assets/images/pillsX.png',
+    'assets/images/medicine1.png',
+    'assets/images/medicine2.png',
+  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +75,7 @@ class _ListMenuState extends State<ListMenu> {
                         )
                       : ListView.builder(
                           scrollDirection: Axis.vertical,
-                          physics: ClampingScrollPhysics(),
+                          physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: snapshot.data!.size,
                           itemBuilder: (context, index) {
@@ -77,49 +87,75 @@ class _ListMenuState extends State<ListMenu> {
                                     left: 10, right: 10, top: 10),
                                 child: Container(
                                   // width: sizeS.width,
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                       color: const Color.fromARGB(
-                                          255, 74, 103, 117),
+                                          255, 114, 110, 110),
                                       borderRadius: BorderRadius.circular(8)),
                                   height: 100,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  child: Row(
                                     children: [
-                                      Text(
-                                          'ชื่อยา ${(pill.data() as Map<String, dynamic>)['drug_name']}',
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white)),
-                                      Text(
-                                          'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white)),
-                                      Text(
-                                          'เวลาทานยา ${(pill.data() as Map<String, dynamic>)['drug_time']}',
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white)),
-                                      Text(
-                                          'หมายเหตุ ${(pill.data() as Map<String, dynamic>)['drug_note']}',
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white)),
-                                      // Text(
-                                      //   'drugList',
-                                      //   style: const TextStyle(
-                                      //       fontSize: 14, color: Colors.white),
-                                      // ),
-                                      // Text(
-                                      //   'pharmaEffects',
-                                      //   maxLines: 3,
-                                      //   overflow: TextOverflow.ellipsis,
-                                      //   style: const TextStyle(
-                                      //       fontSize: 14, color: Colors.white),
-                                      // )
+                                      Container(
+                                        padding: const EdgeInsets.all(3), 
+                                        decoration: const BoxDecoration(
+                                          color: Color.fromARGB(255, 200, 210, 218), 
+                                          shape: BoxShape.circle, 
+                                        ),
+                                        child: const CircleAvatar(
+                                          radius: 36,
+                                          backgroundImage: AssetImage(
+                                            'assets/images/pills.png'
+                                            // avatarImages[random.nextInt(avatarImages.length)],
+                                          ),
+                                        ),
+                                      ),
+                                      // const Align(
+                                      //     alignment: Alignment.center,
+                                      //     child: CircleAvatar(
+                                      //         radius: 40,
+                                      //         backgroundImage: AssetImage(
+                                      //             'assets/images/pills.png'))),
+                                      const SizedBox(width: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              'ชื่อยา ${(pill.data() as Map<String, dynamic>)['drug_name']}',
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                          Text(
+                                              'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                          Text(
+                                              'เวลาทานยา ${(pill.data() as Map<String, dynamic>)['drug_time']}',
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                          Text(
+                                              'หมายเหตุ ${(pill.data() as Map<String, dynamic>)['drug_note']}',
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                          // Text(
+                                          //   'drugList',
+                                          //   style: const TextStyle(
+                                          //       fontSize: 14, color: Colors.white),
+                                          // ),
+                                          // Text(
+                                          //   'pharmaEffects',
+                                          //   maxLines: 3,
+                                          //   overflow: TextOverflow.ellipsis,
+                                          //   style: const TextStyle(
+                                          //       fontSize: 14, color: Colors.white),
+                                          // )
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),

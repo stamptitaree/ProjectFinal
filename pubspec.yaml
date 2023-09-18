@@ -87,6 +87,12 @@ flutter:
     - assets/images/woman.png
     - assets/images/unknow.png
     - assets/images/health.png
+    - assets/images/pills.png
+    - assets/images/plus2.png
+    - assets/images/logout1.png
+    - assets/images/medicine2.png
+    - assets/images/medicine1.png
+    - assets/images/pillsX.png
   
 
   #An image assets can refer to one or more resolution-specific "variants", see:
