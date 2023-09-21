@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mytest/Splash.view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mytest/notify.dart';
+import 'package:mytest/services/local_notification.dart';
 // import 'package:mytest/api/firebase_api.dart';
 // import 'package:mytest/notify.dart';
 import 'package:mytest/widget/navbar_main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocalNotification().initNotification();
   await Firebase.initializeApp();
+  
   // await FirebaseApi().initNotifications();
   runApp(const App());
 }
@@ -21,7 +25,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AppNavigator(),
+      home: Notify(),
     );
   }
 }

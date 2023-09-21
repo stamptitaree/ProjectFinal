@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mytest/services/local_notification.dart';
 
 class Notify extends StatefulWidget {
   const Notify({super.key});
@@ -8,12 +9,27 @@ class Notify extends StatefulWidget {
 }
 
 class _NotifyState extends State<Notify> {
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('asd'),
       ),
+      body: Center(
+          child: SizedBox(
+        width: 180,
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () {
+            LocalNotification().simpleNotificationShow();
+          },
+          child: const Text(
+            'Send',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+      )),
     );
   }
 }
