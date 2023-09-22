@@ -16,9 +16,9 @@ class Addpill extends StatefulWidget {
 }
 
 class _AddpillState extends State<Addpill> {
-  final TextEditingController namepillController  = TextEditingController();
+  final TextEditingController namepillController = TextEditingController();
   final TextEditingController rangepillController = TextEditingController();
-  final TextEditingController notepillController  = TextEditingController();
+  final TextEditingController notepillController = TextEditingController();
   final TextEditingController pertimepillController = TextEditingController();
   late TextEditingController _dateEditingController;
   late TextEditingController _timeEditingController;
@@ -34,11 +34,15 @@ class _AddpillState extends State<Addpill> {
   final _formKey = GlobalKey<FormState>();
   final String a = 'a';
   int notiId = 0;
-  
-  Future <void> validateValue() async {
-    if(namepillController.text != '' && _dateEditingController.text != '' && _timeEditingController.text != ''){
+
+  Future<void> validateValue() async {
+    if (namepillController.text != '' &&
+        _dateEditingController.text != '' &&
+        _timeEditingController.text != '') {
       _createDrug();
-    }else if(namepillController.text == '' || _dateEditingController.text == '' || _timeEditingController.text == ''){
+    } else if (namepillController.text == '' ||
+        _dateEditingController.text == '' ||
+        _timeEditingController.text == '') {
       Fluttertoast.showToast(
         msg: "กรุณากรอกข้อมูลทุกช่อง",
         gravity: ToastGravity.BOTTOM,
@@ -47,7 +51,7 @@ class _AddpillState extends State<Addpill> {
       );
     }
   }
-  
+
   Future<void> _createDrug() async {
     try {
       notiId = Random().nextInt(99999999);
@@ -56,14 +60,14 @@ class _AddpillState extends State<Addpill> {
           .doc(_auth.currentUser?.email)
           .collection("add_drug")
           .add({
-            'drug_name' : namepillController.text,
-            'drug_range': rangepillController.text,
-            'drug_note' : notepillController.text,
-            'drug_pertime' : pertimepillController.text,
-            'drug_time' : _timeEditingController.text,
-            'drug_date' : _dateEditingController.text,
-            'drug_notification_id': notiId
-          });
+        'drug_name': namepillController.text,
+        'drug_range': rangepillController.text,
+        'drug_note': notepillController.text,
+        'drug_pertime': pertimepillController.text,
+        'drug_time': _timeEditingController.text,
+        'drug_date': _dateEditingController.text,
+        'drug_notification_id': notiId
+      });
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
     } catch (e) {
       Fluttertoast.showToast(
@@ -94,7 +98,8 @@ class _AddpillState extends State<Addpill> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: GlobalColors.mainColor,
-        title: const Center(child: Text('เพิ่มยา')),
+        title: const Center(
+            child: Text('เพิ่มยา', style: TextStyle(fontFamily: 'Prompt'))),
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -125,7 +130,7 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('ชื่อยา'),
+                  const Text('ชื่อยา', style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
@@ -148,6 +153,10 @@ class _AddpillState extends State<Addpill> {
                           ),
                         ),
                       ),
+                      style: const TextStyle(
+                        fontFamily:
+                            'Prompt', 
+                      ),
                       validator: (value) {
                         RegExp regex = RegExp(r'^.{3,}$');
                         if (value!.isEmpty) {
@@ -165,23 +174,28 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('ช่วงเวลา'),
+                  const Text('ช่วงเวลา',
+                      style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Container(
                       height: 56,
                       padding: const EdgeInsets.only(top: 3, left: 15),
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         border: Border.all(color: GlobalColors.borderInput),
                       ),
                       child: DropdownButton<String>(
-                        hint: const Text('เลือกช่วงเวลา'),
+                        hint: const Text('เลือกช่วงเวลา',
+                            style: TextStyle(fontFamily: 'Prompt')),
                         isExpanded: true,
                         value: dropdownValuePeriod,
                         // icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
-                        style: TextStyle(color: GlobalColors.textColor),
+                        style: TextStyle(
+                            color: GlobalColors.textColor,
+                            fontFamily: 'Prompt'),
                         underline: Container(),
                         onChanged: (String? value) {
                           // This is called when the user selects an item.
@@ -209,31 +223,36 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('หมายเหตุ'),
+                  const Text('หมายเหตุ',
+                      style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Container(
                       height: 56,
                       padding: const EdgeInsets.only(top: 3, left: 15),
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         border: Border.all(color: GlobalColors.borderInput),
                       ),
                       child: DropdownButton<String>(
-                        hint: const Text('เลือกหมายเหตุ'),
+                        hint: const Text('เลือกหมายเหตุ',
+                            style: TextStyle(fontFamily: 'Prompt')),
                         isExpanded: true,
                         value: dropdownValueNote,
                         // icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
-                        style: TextStyle(color: GlobalColors.textColor),
+                        style: TextStyle(
+                            color: GlobalColors.textColor,
+                            fontFamily: 'Prompt'),
                         underline: Container(),
                         onChanged: (String? value) {
                           // This is called when the user selects an item.
                           setState(() {
                             dropdownValueNote = value!;
-                          });         
+                          });
                           if (value != null && value.isNotEmpty) {
-                           notepillController.text = value;
+                            notepillController.text = value;
                           } else {
                             notepillController.text = '';
                           }
@@ -253,7 +272,8 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('จำนวนยาที่ได้รับต่อครั้ง'),
+                  const Text('จำนวนยาที่ได้รับต่อครั้ง',
+                      style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: TextFormField(
@@ -275,6 +295,10 @@ class _AddpillState extends State<Addpill> {
                           ),
                         ),
                       ),
+                      style: const TextStyle(
+                        fontFamily:
+                            'Prompt', 
+                      ),
                     ),
                   ),
                 ],
@@ -282,7 +306,8 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('เวลารับประทานยา'),
+                  const Text('เวลารับประทานยา',
+                      style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: InkWell(
@@ -291,7 +316,7 @@ class _AddpillState extends State<Addpill> {
                           context: context,
                           initialTime: TimeOfDay.now(),
                         );
-        
+
                         if (pickedTime != null) {
                           // ignore: use_build_context_synchronously
                           final formattedTime = pickedTime.format(context);
@@ -303,7 +328,7 @@ class _AddpillState extends State<Addpill> {
                       child: IgnorePointer(
                         child: TextFormField(
                           controller: _timeEditingController,
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black, fontFamily:'Prompt'),
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -320,6 +345,7 @@ class _AddpillState extends State<Addpill> {
                               ),
                             ),
                           ),
+                          
                         ),
                       ),
                     ),
@@ -329,7 +355,7 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Text('วันที่'),
+                  const Text('วันที่', style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
                     child: InkWell(
@@ -340,7 +366,7 @@ class _AddpillState extends State<Addpill> {
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2030),
                         );
-        
+
                         if (pickedDate != null) {
                           final formattedDate =
                               DateFormat('dd-MM-yyyy').format(pickedDate);
@@ -352,7 +378,7 @@ class _AddpillState extends State<Addpill> {
                       child: IgnorePointer(
                         child: TextFormField(
                           controller: _dateEditingController,
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Colors.black,fontFamily:'Prompt'),
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -395,9 +421,9 @@ class _AddpillState extends State<Addpill> {
                   ),
                   child: const Text('ยืนยัน',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      )),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Prompt')),
                 ),
               )
             ],

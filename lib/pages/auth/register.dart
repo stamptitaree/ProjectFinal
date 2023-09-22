@@ -40,12 +40,12 @@ class _RegisterState extends State<Register> {
   List<String> list = <String>[
     'โรคเบาหวาน',
     'โรคหลอดเลือดสมอง',
-    'โรคหัวใจ',
-    'โรคถุงลมโป่งพอง',
+    'โรคปอดอุดกั้นเรื้อรัง',
     'โรคความดันโลหิตสูง',
     'โรคไขมันในเลือดสูง',
-    'โรคอ้วนลงพุง'
+    'โรคอ้วนลงพุง',
     'โรคไตเรื้อรัง'
+    'โรคมะเร็ง'
   ];
   String? dropdownValue;
 
@@ -137,6 +137,8 @@ postDetailsToFirestore(User user) async {
                         color: GlobalColors.textColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
+                        fontFamily:'Prompt'
+
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -222,11 +224,11 @@ postDetailsToFirestore(User user) async {
                         color: const Color(0xffEEF3F8),
                       ),
                       child: DropdownButton<String>(
-                        hint: const Text('เพศ'),
+                        hint: const Text('เพศ',style: TextStyle(fontFamily:'Prompt'),),
                         isExpanded: true,
                         value: dropdownValueSex,
                         elevation: 16,
-                        style: TextStyle(color: GlobalColors.textColor),
+                        style: TextStyle(color: GlobalColors.textColor,fontFamily:'Prompt'),
                         underline: Container(),
                         onChanged: (String? value) {
                           setState(() {
@@ -276,12 +278,12 @@ postDetailsToFirestore(User user) async {
                         color: const Color(0xffEEF3F8),
                       ),
                       child: DropdownButton<String>(
-                        hint: const Text('โรค NCDS'),
+                        hint: const Text('โรค NCDS',style: TextStyle(fontFamily:'Prompt'),),
                         isExpanded: true,
                         value: dropdownValue,
                         // icon: const Icon(Icons.arrow_downward),
                         elevation: 16,
-                        style: TextStyle(color: GlobalColors.textColor),
+                        style: TextStyle(color: GlobalColors.textColor,fontFamily:'Prompt'),
                         underline: Container(),
                         onChanged: (String? value) {
                           // This is called when the user selects an item.
@@ -337,6 +339,8 @@ postDetailsToFirestore(User user) async {
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
+                              fontFamily:'Prompt'
+                              
                             )),
                       ),
                     )

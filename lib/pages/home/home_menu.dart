@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:mytest/pages/ndcs/list_drug.dart';
 import 'package:mytest/pages/home/addpill.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/buttom_main.dart';
@@ -45,7 +46,7 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'เพิ่มยา',
-                          style: TextStyle(fontSize: 26.0),
+                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
                         ),
                       ),
                     ],
@@ -75,7 +76,7 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'รายการยา',
-                          style: TextStyle(fontSize: 26.0),
+                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
                         ),
                       ),
                     ],
@@ -105,7 +106,7 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'ประวัติยา',
-                          style: TextStyle(fontSize: 26.0),
+                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
                         ),
                       ),
                     ],
@@ -117,7 +118,8 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 3));
+                  Get.to(() => const ListDrug());
+                  
             
                },
                 child:  Padding(
@@ -136,7 +138,7 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'ความรู้เรื่องโรค',
-                          style: TextStyle(fontSize: 26.0),
+                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
                         ),
                       ),
                     ],

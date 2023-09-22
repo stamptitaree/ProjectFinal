@@ -34,6 +34,7 @@ class TextFormGlobal extends StatelessWidget {
         keyboardType: textInputType,
         obscureText: obscure,
         validator: validator,
+        style: const TextStyle(fontFamily:'Prompt'),
         decoration: InputDecoration(
           hintText: text,
           border: InputBorder.none,

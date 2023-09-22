@@ -70,6 +70,8 @@ class LoginView extends StatelessWidget {
                           color: GlobalColors.textColor,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
+                          fontFamily:'Prompt'
+                          
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -133,6 +135,8 @@ class LoginView extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
+                                fontFamily:'Prompt'
+                                
                               )),
                         ),
                       ),

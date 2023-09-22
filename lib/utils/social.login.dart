@@ -24,6 +24,8 @@ class SocialLogin extends StatelessWidget {
                   'ลืมรหัสผ่าน',
                   style: TextStyle(
                       color: GlobalColors.textColor,
+                      fontFamily:'Prompt',
+                      
                       fontWeight: FontWeight.w600,
                       fontSize: 18),
                 ),
@@ -44,6 +46,7 @@ class SocialLogin extends StatelessWidget {
                 child: const Text(
                   'สมัครบัญชีผู้ใช้งาน',
                   style: TextStyle(
+                    fontFamily:'Prompt',
                       color: Colors.red,
                       fontWeight: FontWeight.w600,
                       fontSize: 18),

@@ -18,10 +18,15 @@ class _ListMenuState extends State<ListMenu> {
   final Random random = Random();
 
   List<String> avatarImages = <String>[
-    'assets/images/pills.png',
-    'assets/images/pillsX.png',
-    'assets/images/medicine1.png',
-    'assets/images/medicine2.png',
+     'assets/icons/ความรู้โรค.png',
+     'assets/icons/เบาหวาน.png',
+     'assets/icons/หลอดเลือดสมอง.png',
+     'assets/icons/ปอดอุดกั้น.png',
+     'assets/icons/โรคความดันโลหิต.png',
+     'assets/icons/ไขมันในเลือดสูง.png',
+     'assets/icons/โรคไต.png',
+     'assets/icons/มะเร็ง.png',
+     'assets/icons/โรคอ้วน.png',
   ];
 
   @override
@@ -65,6 +70,7 @@ class _ListMenuState extends State<ListMenu> {
                                     // fontFamily: 'FC Minimal',
                                     color: Colors.grey[600],
                                     fontSize: 28,
+                                    fontFamily:'Prompt'
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

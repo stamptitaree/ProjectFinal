@@ -18,7 +18,7 @@ class AppbarMain extends StatelessWidget implements PreferredSizeWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: GlobalColors.mainColor,
-        title: Center(child: Text(title)),
+        title: Center(child: Text(title,style: const TextStyle(fontFamily:'Prompt'),)),
         actions: <Widget>[
           IconButton(
               onPressed: () async {

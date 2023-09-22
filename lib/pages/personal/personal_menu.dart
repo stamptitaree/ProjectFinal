@@ -210,6 +210,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                               'Email',
                               style: TextStyle(
                                 fontSize: 18,
+                                fontFamily:'Prompt'
                               ),
                             ),
                             Expanded(
@@ -225,6 +226,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                               BorderRadius.circular(10),
                                           borderSide: BorderSide(
                                               color: Colors.black38))),
+                                              style: TextStyle(fontFamily:'Prompt'),
                                 ),
                               ),
                             ),
@@ -239,7 +241,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                           children: [
                             Text(
                               'Password',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -248,6 +250,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                   enabled: isEditing,
                                   controller: passwordController,
                                   obscureText: obSecurePassword,
+                                  style: TextStyle(fontFamily:'Prompt'),
                                   decoration: InputDecoration(
                                       suffixIcon: obSecurePassword
                                           ? IconButton(
@@ -291,7 +294,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'ชื่อ :',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -299,6 +302,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                   child: TextFormField(
                                     controller: firstnameController,
                                     enabled: isEditing,
+                                    style: TextStyle(fontFamily:'Prompt'),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -321,7 +325,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'นามสกุล',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -329,6 +333,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                   child: TextFormField(
                                     controller: lastnameController,
                                     enabled: isEditing,
+                                    style: TextStyle(fontFamily:'Prompt'),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -351,7 +356,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'เพศ',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -359,6 +364,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                   child: TextFormField(
                                     controller: sexController,
                                     enabled: isEditing,
+                                    style: TextStyle(fontFamily:'Prompt'),
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
@@ -381,7 +387,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'ประวัติแพ้ยา',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -389,6 +395,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                 child: TextFormField(
                                   controller: historydrugController,
                                   enabled: isEditing,
+                                  style: TextStyle(fontFamily:'Prompt'),
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                           borderRadius:
@@ -410,7 +417,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'โรค NCDS',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -418,6 +425,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                 child: TextFormField(
                                   controller: diseaseNcdsController,
                                   enabled: isEditing,
+                                  style: TextStyle(fontFamily:'Prompt'),
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                           borderRadius:
@@ -439,7 +447,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                             Text(
                               'โรคประจำตัว',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                                  fontSize: 18, fontWeight: FontWeight.w500,fontFamily:'Prompt'),
                             ),
                             Expanded(
                               child: Padding(
@@ -447,6 +455,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                 child: TextFormField(
                                   controller: congenitalDiseaseController,
                                   enabled: isEditing,
+                                  style: TextStyle(fontFamily:'Prompt'),
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                           borderRadius:
@@ -487,6 +496,8 @@ class _PersonalMenuState extends State<PersonalMenu> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
+                                  fontFamily:'Prompt'
+                                  
                                 )),
                           ),
                         ),

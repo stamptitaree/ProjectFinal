@@ -93,6 +93,22 @@ flutter:
     - assets/images/medicine2.png
     - assets/images/medicine1.png
     - assets/images/pillsX.png
+    - assets/icons/ความรู้โรค.png
+    - assets/icons/เบาหวาน.png
+    - assets/icons/หลอดเลือดสมอง.png
+    - assets/icons/ปอดอุดกั้น.png
+    - assets/icons/โรคความดันโลหิต.png
+    - assets/icons/ไขมันในเลือดสูง.png
+    - assets/icons/โรคไต.png
+    - assets/icons/มะเร็ง.png
+    - assets/icons/โรคอ้วน.png
+    
+    
+    
+    
+    
+    
+    
   
 
   #An image assets can refer to one or more resolution-specific "variants", see:
@@ -106,10 +122,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Prompt
+      fonts:
+        - asset: assets/fonts/Prompt-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
