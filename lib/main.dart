@@ -4,16 +4,23 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mytest/Splash.view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mytest/notify.dart';
+import 'package:mytest/pages/notificationpop/popup_notify.dart';
 import 'package:mytest/services/local_notification.dart';
 // import 'package:mytest/api/firebase_api.dart';
 // import 'package:mytest/notify.dart';
 import 'package:mytest/widget/navbar_main.dart';
+// ignore: depend_on_referenced_packages
+import 'package:timezone/data/latest_all.dart' as tz;
+// ignore: depend_on_referenced_packages
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
+  tz.initializeTimeZones();
+  tz.setLocalLocation(tz.getLocation('Asia/Bangkok'));
   WidgetsFlutterBinding.ensureInitialized();
   LocalNotification().initNotification();
   await Firebase.initializeApp();
-  
+
   // await FirebaseApi().initNotifications();
   runApp(const App());
 }
@@ -25,7 +32,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AppNavigator(),
+      home: Notify(),
     );
   }
 }

@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/utils/global.colors.dart';
 
-import 'dart:math';
-
 class Addpill extends StatefulWidget {
   const Addpill({super.key});
 
@@ -19,6 +17,7 @@ class _AddpillState extends State<Addpill> {
   final TextEditingController namepillController = TextEditingController();
   final TextEditingController rangepillController = TextEditingController();
   final TextEditingController notepillController = TextEditingController();
+  final TextEditingController daypillController = TextEditingController();
   final TextEditingController pertimepillController = TextEditingController();
   late TextEditingController _dateEditingController;
   late TextEditingController _timeEditingController;
@@ -26,14 +25,17 @@ class _AddpillState extends State<Addpill> {
   List<String> listPeriod = <String>['เช้า', 'กลางวัน', 'เย็น', 'ก่อนนอน'];
   String? dropdownValuePeriod;
 
+  List<String> listDay = <String>['1', '3', '5', '7'];
+  String? dropdownValueDay;
+
   List<String> listNote = <String>['ก่อนอาหาร', 'หลังอาหาร'];
   String? dropdownValueNote;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final _formKey = GlobalKey<FormState>();
-  final String a = 'a';
-  int notiId = 0;
+  // final String a = 'a';
+  // int notiId = 0;
 
   Future<void> validateValue() async {
     if (namepillController.text != '' &&
@@ -54,7 +56,7 @@ class _AddpillState extends State<Addpill> {
 
   Future<void> _createDrug() async {
     try {
-      notiId = Random().nextInt(99999999);
+      // notiId = Random().nextInt(99999999);
       await FirebaseFirestore.instance
           .collection("drugs")
           .doc(_auth.currentUser?.email)
@@ -63,10 +65,10 @@ class _AddpillState extends State<Addpill> {
         'drug_name': namepillController.text,
         'drug_range': rangepillController.text,
         'drug_note': notepillController.text,
+        'drug_day': daypillController.text,
         'drug_pertime': pertimepillController.text,
         'drug_time': _timeEditingController.text,
         'drug_date': _dateEditingController.text,
-        'drug_notification_id': notiId
       });
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
     } catch (e) {
@@ -154,8 +156,7 @@ class _AddpillState extends State<Addpill> {
                         ),
                       ),
                       style: const TextStyle(
-                        fontFamily:
-                            'Prompt', 
+                        fontFamily: 'Prompt',
                       ),
                       validator: (value) {
                         RegExp regex = RegExp(r'^.{3,}$');
@@ -272,6 +273,55 @@ class _AddpillState extends State<Addpill> {
               const SizedBox(height: 10),
               Row(
                 children: [
+                  const Text('จำนวนวัน',
+                      style: TextStyle(fontFamily: 'Prompt')),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      height: 56,
+                      padding: const EdgeInsets.only(top: 3, left: 15),
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        border: Border.all(color: GlobalColors.borderInput),
+                      ),
+                      child: DropdownButton<String>(
+                        hint: const Text('เลือกจำนวนวัน',
+                            style: TextStyle(fontFamily: 'Prompt')),
+                        isExpanded: true,
+                        value: dropdownValueDay,
+                        // icon: const Icon(Icons.arrow_downward),
+                        elevation: 16,
+                        style: TextStyle(
+                            color: GlobalColors.textColor,
+                            fontFamily: 'Prompt'),
+                        underline: Container(),
+                        onChanged: (String? value) {
+                          // This is called when the user selects an item.
+                          setState(() {
+                            dropdownValueDay = value!;
+                          });
+                          if (value != null && value.isNotEmpty) {
+                            daypillController.text = value;
+                          } else {
+                            daypillController.text = '';
+                          }
+                        },
+                        items: listDay
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
                   const Text('จำนวนยาที่ได้รับต่อครั้ง',
                       style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
@@ -296,8 +346,7 @@ class _AddpillState extends State<Addpill> {
                         ),
                       ),
                       style: const TextStyle(
-                        fontFamily:
-                            'Prompt', 
+                        fontFamily: 'Prompt',
                       ),
                     ),
                   ),
@@ -328,7 +377,8 @@ class _AddpillState extends State<Addpill> {
                       child: IgnorePointer(
                         child: TextFormField(
                           controller: _timeEditingController,
-                          style: const TextStyle(color: Colors.black, fontFamily:'Prompt'),
+                          style: const TextStyle(
+                              color: Colors.black, fontFamily: 'Prompt'),
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -345,7 +395,6 @@ class _AddpillState extends State<Addpill> {
                               ),
                             ),
                           ),
-                          
                         ),
                       ),
                     ),
@@ -378,7 +427,8 @@ class _AddpillState extends State<Addpill> {
                       child: IgnorePointer(
                         child: TextFormField(
                           controller: _dateEditingController,
-                          style: const TextStyle(color: Colors.black,fontFamily:'Prompt'),
+                          style: const TextStyle(
+                              color: Colors.black, fontFamily: 'Prompt'),
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),

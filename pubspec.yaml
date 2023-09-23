@@ -93,6 +93,10 @@ flutter:
     - assets/images/medicine2.png
     - assets/images/medicine1.png
     - assets/images/pillsX.png
+    - assets/images/pillspop.png
+    - assets/images/slip.png
+    - assets/images/yes.png
+    - assets/images/no.png
     - assets/icons/ความรู้โรค.png
     - assets/icons/เบาหวาน.png
     - assets/icons/หลอดเลือดสมอง.png
@@ -106,11 +110,6 @@ flutter:
     
     
     
-    
-    
-    
-  
-
   #An image assets can refer to one or more resolution-specific "variants", see:
    #https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
 import 'dart:math';
@@ -14,19 +15,21 @@ class ListMenu extends StatefulWidget {
 }
 
 class _ListMenuState extends State<ListMenu> {
-  final DateTime _selectedDate = DateTime.now();
+  DateTime _selectedDate = DateTime.now();
+  final TextEditingController _dateEditingController = TextEditingController(
+      text: DateFormat('dd-MM-yyyy').format(DateTime.now()));
   final Random random = Random();
 
   List<String> avatarImages = <String>[
-     'assets/icons/ความรู้โรค.png',
-     'assets/icons/เบาหวาน.png',
-     'assets/icons/หลอดเลือดสมอง.png',
-     'assets/icons/ปอดอุดกั้น.png',
-     'assets/icons/โรคความดันโลหิต.png',
-     'assets/icons/ไขมันในเลือดสูง.png',
-     'assets/icons/โรคไต.png',
-     'assets/icons/มะเร็ง.png',
-     'assets/icons/โรคอ้วน.png',
+    'assets/icons/ความรู้โรค.png',
+    'assets/icons/เบาหวาน.png',
+    'assets/icons/หลอดเลือดสมอง.png',
+    'assets/icons/ปอดอุดกั้น.png',
+    'assets/icons/โรคความดันโลหิต.png',
+    'assets/icons/ไขมันในเลือดสูง.png',
+    'assets/icons/โรคไต.png',
+    'assets/icons/มะเร็ง.png',
+    'assets/icons/โรคอ้วน.png',
   ];
 
   @override
@@ -37,6 +40,60 @@ class _ListMenuState extends State<ListMenu> {
       appBar: AppbarMain(title: 'รายการยา'),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 5),
+            child: Row(
+              children: [
+                const Text('วันที่',
+                    style: TextStyle(fontFamily: 'Prompt', fontSize: 20)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: InkWell(
+                    onTap: () async {
+                      final DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2030),
+                      );
+
+                      if (pickedDate != null) {
+                        _selectedDate = pickedDate;
+                        final formattedDate =
+                            DateFormat('dd-MM-yyyy').format(pickedDate);
+                        setState(() {
+                          _dateEditingController.text = formattedDate;
+                        });
+                      }
+                    },
+                    child: IgnorePointer(
+                      child: TextFormField(
+                        controller: _dateEditingController,
+                        style: const TextStyle(
+                            color: Colors.black, fontFamily: 'Prompt'),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
               child: SizedBox(
             height: sizeS.height,
@@ -67,11 +124,10 @@ class _ListMenuState extends State<ListMenu> {
                                 child: Text(
                                   'ว่าง',
                                   style: TextStyle(
-                                    // fontFamily: 'FC Minimal',
-                                    color: Colors.grey[600],
-                                    fontSize: 28,
-                                    fontFamily:'Prompt'
-                                  ),
+                                      // fontFamily: 'FC Minimal',
+                                      color: Colors.grey[600],
+                                      fontSize: 28,
+                                      fontFamily: 'Prompt'),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -97,63 +153,61 @@ class _ListMenuState extends State<ListMenu> {
                                       color: const Color.fromARGB(
                                           255, 114, 110, 110),
                                       borderRadius: BorderRadius.circular(8)),
-                                  height: 100,
+                                  height: 120,
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(3),
-                                        decoration: const BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 200, 210, 218),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: const CircleAvatar(
-                                          radius: 36,
-                                          backgroundImage: AssetImage(
-                                              'assets/images/pills.png'
-                                              // avatarImages[random.nextInt(avatarImages.length)],
-                                              ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 16),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                      Row(
                                         children: [
-                                          Text(
-                                              'ชื่อยา ${(pill.data() as Map<String, dynamic>)['drug_name']}',
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white)),
-                                          Text(
-                                              'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white)),
-                                          Text(
-                                              'เวลาทานยา : ${(pill.data() as Map<String, dynamic>)['drug_time']}',
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white)),
-                                          Text(
-                                              'หมายเหตุ : ${(pill.data() as Map<String, dynamic>)['drug_note']}',
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.white)),
-                                          // Text(
-                                          //   'drugList',
-                                          //   style: const TextStyle(
-                                          //       fontSize: 14, color: Colors.white),
-                                          // ),
-                                          // Text(
-                                          //   'pharmaEffects',
-                                          //   maxLines: 3,
-                                          //   overflow: TextOverflow.ellipsis,
-                                          //   style: const TextStyle(
-                                          //       fontSize: 14, color: Colors.white),
-                                          // )
+                                          Container(
+                                            padding: const EdgeInsets.all(3),
+                                            decoration: const BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  255, 200, 210, 218),
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: const CircleAvatar(
+                                              radius: 36,
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/pills.png'
+                                                  // avatarImages[random.nextInt(avatarImages.length)],
+                                                  ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 16),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  'ชื่อยา ${(pill.data() as Map<String, dynamic>)['drug_name']}',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Prompt')),
+                                              Text(
+                                                  'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Prompt')),
+                                              Text(
+                                                  'เวลาทานยา : ${(pill.data() as Map<String, dynamic>)['drug_time']}',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Prompt')),
+                                              Text(
+                                                  'หมายเหตุ : ${(pill.data() as Map<String, dynamic>)['drug_note']}',
+                                                  style: const TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Prompt')),
+                                            ],
+                                          ),
                                         ],
                                       ),
                                       Column(
@@ -163,22 +217,20 @@ class _ListMenuState extends State<ListMenu> {
                                             MainAxisAlignment.start,
                                         children: [
                                           GestureDetector(
-                                            onTap: () {
-                                            },
+                                            onTap: () {},
                                             child: Icon(
                                               Icons.edit,
                                               color: Colors.white,
-                                              size: 14,
+                                              size: 25,
                                             ),
                                           ),
-                                          const SizedBox(height: 10),
+                                          const SizedBox(height: 15),
                                           GestureDetector(
-                                            onTap: () {
-                                            },
+                                            onTap: () {},
                                             child: Icon(
                                               Icons.delete,
                                               color: Colors.white,
-                                              size: 14,
+                                              size: 25,
                                             ),
                                           ),
                                         ],
