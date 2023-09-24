@@ -6,7 +6,9 @@ import 'package:timezone/timezone.dart' as tz;
 
 @pragma('vm:entry-point')
 void notificationTapBackground(NotificationResponse notificationResponse) {
-  LocalNotification().cancelNoti(id: notificationResponse.id);
+  // LocalNotification().cancelNoti(id: notificationResponse.id);
+  print('asdasdasdasd');
+  Get.to(() => PopupNotify(id: notificationResponse.id!));
 }
 
 class LocalNotification {
@@ -60,7 +62,7 @@ class LocalNotification {
     await notificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (details) async {
-        // print(details.id);
+        // print(details.);
         if (details.id != null) {
           Get.to(() => PopupNotify(id: details.id!));
         }

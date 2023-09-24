@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class Addpill extends StatefulWidget {
@@ -38,6 +39,7 @@ class _AddpillState extends State<Addpill> {
   // int notiId = 0;
 
   Future<void> validateValue() async {
+    // print(_dateEditingController.text);
     if (namepillController.text != '' &&
         _dateEditingController.text != '' &&
         _timeEditingController.text != '') {
@@ -57,21 +59,37 @@ class _AddpillState extends State<Addpill> {
   Future<void> _createDrug() async {
     try {
       // notiId = Random().nextInt(99999999);
-      await FirebaseFirestore.instance
-          .collection("drugs")
-          .doc(_auth.currentUser?.email)
-          .collection("add_drug")
-          .add({
-        'drug_name': namepillController.text,
-        'drug_range': rangepillController.text,
-        'drug_note': notepillController.text,
-        'drug_day': daypillController.text,
-        'drug_pertime': pertimepillController.text,
-        'drug_time': _timeEditingController.text,
-        'drug_date': _dateEditingController.text,
-      });
+      print(daypillController.text);
+      print(_dateEditingController.text);
+      var create_date = DateTime.parse(
+          "${_dateEditingController.text} ${_timeEditingController.text}:00");
+
+      for (var i = 0; i < int.parse(daypillController.text); i++) {
+        String id =
+            "${create_date.month.toString().padLeft(2, '9')}${(create_date.day + i).toString().padLeft(2, '0')}${create_date.hour}${create_date.minute.toString().padLeft(2, '0')}0";
+        var date = DateTime.parse(_dateEditingController.text)
+            .add(Duration(days: i * 1));
+        await FirebaseFirestore.instance
+            .collection("drugs")
+            .doc(_auth.currentUser?.email)
+            .collection("add_drug")
+            .add({
+          'drug_name': namepillController.text,
+          'drug_range': rangepillController.text,
+          'drug_note': notepillController.text,
+          'drug_day': daypillController.text,
+          'drug_pertime': pertimepillController.text,
+          'drug_time': _timeEditingController.text,
+          'drug_date': DateFormat('yyyy-MM-dd').format(date),
+          'notify_id': id,
+        });
+      }
+      LocalNotification().simpleNotificationShow(
+          create_date, int.parse(daypillController.text));
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
-    } catch (e) {
+    } catch (e, s) {
+      print(e);
+      print(s);
       Fluttertoast.showToast(
         msg: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
         gravity: ToastGravity.BOTTOM,
@@ -364,11 +382,21 @@ class _AddpillState extends State<Addpill> {
                         final TimeOfDay? pickedTime = await showTimePicker(
                           context: context,
                           initialTime: TimeOfDay.now(),
+                          builder: (context, child) {
+                            return MediaQuery(
+                              data: MediaQuery.of(context)
+                                  .copyWith(alwaysUse24HourFormat: true),
+                              child: child ?? Container(),
+                            );
+                          },
                         );
 
                         if (pickedTime != null) {
                           // ignore: use_build_context_synchronously
-                          final formattedTime = pickedTime.format(context);
+
+                          final formattedTime =
+                              "${pickedTime.hour}:${pickedTime.minute}";
+
                           setState(() {
                             _timeEditingController.text = formattedTime;
                           });
@@ -418,7 +446,7 @@ class _AddpillState extends State<Addpill> {
 
                         if (pickedDate != null) {
                           final formattedDate =
-                              DateFormat('dd-MM-yyyy').format(pickedDate);
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
                           setState(() {
                             _dateEditingController.text = formattedDate;
                           });
@@ -470,6 +498,30 @@ class _AddpillState extends State<Addpill> {
                     ],
                   ),
                   child: const Text('ยืนยัน',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Prompt')),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  LocalNotification().pendingNotificationRequests();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: GlobalColors.mainColor,
+                    borderRadius: BorderRadius.circular(6),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: const Text('yyyyy',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,

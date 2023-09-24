@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/pages/home/edit_pill.dart';
+import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
@@ -17,7 +21,7 @@ class ListMenu extends StatefulWidget {
 class _ListMenuState extends State<ListMenu> {
   DateTime _selectedDate = DateTime.now();
   final TextEditingController _dateEditingController = TextEditingController(
-      text: DateFormat('dd-MM-yyyy').format(DateTime.now()));
+      text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
   final Random random = Random();
 
   List<String> avatarImages = <String>[
@@ -52,7 +56,7 @@ class _ListMenuState extends State<ListMenu> {
                     onTap: () async {
                       final DateTime? pickedDate = await showDatePicker(
                         context: context,
-                        initialDate: DateTime.now(),
+                        initialDate: _selectedDate,
                         firstDate: DateTime(2000),
                         lastDate: DateTime(2030),
                       );
@@ -60,7 +64,7 @@ class _ListMenuState extends State<ListMenu> {
                       if (pickedDate != null) {
                         _selectedDate = pickedDate;
                         final formattedDate =
-                            DateFormat('dd-MM-yyyy').format(pickedDate);
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
                         setState(() {
                           _dateEditingController.text = formattedDate;
                         });
@@ -104,7 +108,7 @@ class _ListMenuState extends State<ListMenu> {
                     .collection('add_drug')
                     .where('drug_date',
                         isEqualTo:
-                            DateFormat('dd-MM-yyyy').format(_selectedDate))
+                            DateFormat('yyyy-MM-dd').format(_selectedDate))
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -217,8 +221,15 @@ class _ListMenuState extends State<ListMenu> {
                                             MainAxisAlignment.start,
                                         children: [
                                           GestureDetector(
-                                            onTap: () {},
-                                            child: Icon(
+                                            onTap: () {
+                                              String docIdEdit =
+                                                  snapshot.data!.docs[index].id;
+                                              // print(docIdEdit);
+                                              // Get.to(Editpill());
+                                              Get.to(() =>
+                                                  Editpill(idEdit: docIdEdit));
+                                            },
+                                            child: const Icon(
                                               Icons.edit,
                                               color: Colors.white,
                                               size: 25,
@@ -226,8 +237,38 @@ class _ListMenuState extends State<ListMenu> {
                                           ),
                                           const SizedBox(height: 15),
                                           GestureDetector(
-                                            onTap: () {},
-                                            child: Icon(
+                                            onTap: () {
+                                              String docIdToDelete =
+                                                  snapshot.data!.docs[index].id;
+                                              Map<String, dynamic> pillData =
+                                                  pill.data()
+                                                      as Map<String, dynamic>;
+                                              int idNotify =
+                                                  pillData['notify_id'];
+                                              // print(id);
+                                              FirebaseFirestore.instance
+                                                  .collection('drugs')
+                                                  .doc(FirebaseAuth.instance
+                                                      .currentUser?.email)
+                                                  .collection('add_drug')
+                                                  .doc(docIdToDelete)
+                                                  .delete()
+                                                  .then((_) {
+                                                LocalNotification().cancelNoti(
+                                                    id: idNotify);
+                                                Fluttertoast.showToast(
+                                                    msg: "ลบรายการยาสำเร็จ");
+                                              }).catchError((error) {
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+                                                  gravity: ToastGravity.BOTTOM,
+                                                  backgroundColor: Colors.red,
+                                                  textColor: Colors.white,
+                                                );
+                                              });
+                                            },
+                                            child: const Icon(
                                               Icons.delete,
                                               color: Colors.white,
                                               size: 25,

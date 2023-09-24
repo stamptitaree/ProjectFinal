@@ -87,7 +87,7 @@ class _ListDrugState extends State<ListDrug> {
                               left: 10, right: 10, top: 9 ,bottom: 9),
                           child: PressableContainer(
                             onPressed: () {
-                              print(diseaseName);
+                              print(dataMap);
                             },
                             child: Padding(
                               padding:

@@ -13,6 +13,12 @@ class PopupNotify extends StatefulWidget {
 
 class _PopupNotifyState extends State<PopupNotify> {
   @override
+  void initState() {
+    super.initState();
+    print(widget.id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
