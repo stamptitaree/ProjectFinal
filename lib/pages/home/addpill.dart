@@ -64,29 +64,29 @@ class _AddpillState extends State<Addpill> {
       var create_date = DateTime.parse(
           "${_dateEditingController.text} ${_timeEditingController.text}:00");
 
-      // for (var i = 0; i < int.parse(daypillController.text); i++) {
-      //   String id =
-      //       "${create_date.month.toString().padLeft(2, '9')}${(create_date.day + i).toString().padLeft(2, '0')}${create_date.hour}${create_date.minute.toString().padLeft(2, '0')}0";
-      //   var date = DateTime.parse(_dateEditingController.text)
-      //       .add(Duration(days: i * 1));
-      //   await FirebaseFirestore.instance
-      //       .collection("drugs")
-      //       .doc(_auth.currentUser?.email)
-      //       .collection("add_drug")
-      //       .add({
-      //     'drug_name': namepillController.text,
-      //     'drug_range': rangepillController.text,
-      //     'drug_note': notepillController.text,
-      //     'drug_day': daypillController.text,
-      //     'drug_pertime': pertimepillController.text,
-      //     'drug_time': _timeEditingController.text,
-      //     'drug_date': DateFormat('yyyy-MM-dd').format(date),
-      //     'notify_id': id,
-      //   });
-      // }
-      print("D: $create_date");
-      // LocalNotification().simpleNotificationShow(
-      //     create_date, int.parse(daypillController.text));
+      for (var i = 0; i < int.parse(daypillController.text); i++) {
+        String id =
+            "${create_date.month.toString().padLeft(2, '9')}${(create_date.day + i).toString().padLeft(2, '0')}${create_date.hour}${create_date.minute.toString().padLeft(2, '0')}0";
+        var date = DateTime.parse(_dateEditingController.text)
+            .add(Duration(days: i * 1));
+        await FirebaseFirestore.instance
+            .collection("drugs")
+            .doc(_auth.currentUser?.email)
+            .collection("add_drug")
+            .add({
+          'drug_name': namepillController.text,
+          'drug_range': rangepillController.text,
+          'drug_note': notepillController.text,
+          'drug_day': daypillController.text,
+          'drug_pertime': pertimepillController.text,
+          'drug_time': _timeEditingController.text,
+          'drug_date': DateFormat('yyyy-MM-dd').format(date),
+          'notify_id': id,
+        });
+      }
+      print("D: $create_date ${daypillController.text}");
+      LocalNotification().simpleNotificationShow(
+          create_date, int.parse(daypillController.text));
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
     } catch (e, s) {
       print(e);

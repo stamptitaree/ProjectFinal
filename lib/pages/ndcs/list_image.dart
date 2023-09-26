@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytest/utils/global.colors.dart';
 
+// ignore: must_be_immutable
 class Listimage extends StatefulWidget {
   dynamic obj;
   Listimage({super.key, required this.obj});

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
@@ -12,10 +14,32 @@ class PopupNotify extends StatefulWidget {
 }
 
 class _PopupNotifyState extends State<PopupNotify> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String drugTime = '';
+
+    Future<void> queryData() async {
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await FirebaseFirestore.instance
+            .collection("drugs")
+            .doc(_auth.currentUser?.email)
+            .collection("add_drug")
+            .where('notify_id', isEqualTo: widget.id.toString())
+            .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      final data = querySnapshot.docs.first.data() as Map<String, dynamic>;
+      final drugTime = data['drug_time'] as String;
+
+      setState(() {
+        this.drugTime = drugTime;
+      });
+    }
+  }
   @override
   void initState() {
     super.initState();
-    print(widget.id);
+    queryData();
   }
 
   @override
