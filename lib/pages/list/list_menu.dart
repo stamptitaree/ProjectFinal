@@ -243,7 +243,7 @@ class _ListMenuState extends State<ListMenu> {
                                               Map<String, dynamic> pillData =
                                                   pill.data()
                                                       as Map<String, dynamic>;
-                                              int idNotify =
+                                              String idNotify =
                                                   pillData['notify_id'];
                                               // print(id);
                                               FirebaseFirestore.instance
@@ -255,7 +255,7 @@ class _ListMenuState extends State<ListMenu> {
                                                   .delete()
                                                   .then((_) {
                                                 LocalNotification().cancelNoti(
-                                                    id: idNotify);
+                                                    id: int.parse(idNotify));
                                                 Fluttertoast.showToast(
                                                     msg: "ลบรายการยาสำเร็จ");
                                               }).catchError((error) {

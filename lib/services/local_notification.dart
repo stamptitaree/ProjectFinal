@@ -7,8 +7,7 @@ import 'package:timezone/timezone.dart' as tz;
 @pragma('vm:entry-point')
 void notificationTapBackground(NotificationResponse notificationResponse) {
   // LocalNotification().cancelNoti(id: notificationResponse.id);
-  print('asdasdasdasd');
-  Get.to(() => PopupNotify(id: notificationResponse.id!));
+  Get.to(() => Popupnotify(id: notificationResponse.id!));
 }
 
 class LocalNotification {
@@ -41,7 +40,7 @@ class LocalNotification {
         });
       });
 
-      Get.to(() => const BottomNavigationBarExample(selectedIndex: 1));
+      // Get.to(() => const BottomNavigationBarExample(selectedIndex: 1));
     }
   }
 
@@ -64,7 +63,7 @@ class LocalNotification {
       onDidReceiveNotificationResponse: (details) async {
         // print(details.);
         if (details.id != null) {
-          Get.to(() => PopupNotify(id: details.id!));
+          Get.to(() => Popupnotify(id: details.id!));
         }
 
         // cancelNoti(id: details.id);
@@ -105,7 +104,7 @@ class LocalNotification {
     for (var i = 0; i < period; i++) {
       for (var j = 0; j < 5; j++) {
         tz.TZDateTime scheduledTime = tz.TZDateTime.from(
-            date.add(Duration(days: i * 1, seconds: j * 10)), tz.local);
+            date.add(Duration(days: i * 1, minutes: j * 5)), tz.local);
         String id =
             "${scheduledTime.month.toString().padLeft(2, '9')}${scheduledTime.day.toString().padLeft(2, '0')}${date.hour}${date.minute.toString().padLeft(2, '0')}$j";
         // ignore: unused_local_variable

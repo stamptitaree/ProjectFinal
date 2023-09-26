@@ -61,6 +61,7 @@ class _AddpillState extends State<Addpill> {
       // notiId = Random().nextInt(99999999);
       print(daypillController.text);
       print(_dateEditingController.text);
+      // ignore: non_constant_identifier_names
       var create_date = DateTime.parse(
           "${_dateEditingController.text} ${_timeEditingController.text}:00");
 
@@ -396,7 +397,7 @@ class _AddpillState extends State<Addpill> {
                           // ignore: use_build_context_synchronously
 
                           final formattedTime =
-                              "${pickedTime.hour}:${pickedTime.minute}";
+                              "${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}";
 
                           setState(() {
                             _timeEditingController.text = formattedTime;

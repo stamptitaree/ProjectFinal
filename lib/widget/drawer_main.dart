@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mytest/login.view.dart';
 import 'package:mytest/pages/ndcs/list_drug.dart';
+import 'package:mytest/pages/ndcs/list_pill.dart';
 import 'package:mytest/widget/navbar_main.dart';
 
 class DrawerMain extends StatefulWidget {
@@ -71,6 +72,7 @@ class _DrawerMainState extends State<DrawerMain> {
                 stream: isLoading.stream,
                 builder: (context, snapshot) {
                   if (snapshot.data!) {
+                    // ignore: sized_box_for_whitespace
                     return Container(
                       width: double.maxFinite,
                       height: MediaQuery.of(context).size.height * 0.34,
@@ -100,7 +102,9 @@ class _DrawerMainState extends State<DrawerMain> {
                         const Text(
                           'My Profile',
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.normal,fontFamily:'Prompt'),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Prompt'),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -108,7 +112,8 @@ class _DrawerMainState extends State<DrawerMain> {
                             _firstname,
                             style: const TextStyle(
                                 fontSize: 20,
-                                color: Color.fromARGB(187, 99, 14, 116),fontFamily:'Prompt'),
+                                color: Color.fromARGB(187, 99, 14, 116),
+                                fontFamily: 'Prompt'),
                           ),
                         )
                       ],
@@ -119,7 +124,10 @@ class _DrawerMainState extends State<DrawerMain> {
               padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
                 'PROFILE',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily:'Prompt'),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Prompt'),
               ),
             ),
             ListTile(
@@ -128,7 +136,8 @@ class _DrawerMainState extends State<DrawerMain> {
                 width: 26,
                 height: 26,
               ),
-              title: const Text('ข้อมูลส่วนตัว',style: TextStyle(fontFamily:'Prompt',fontSize: 18)),
+              title: const Text('ข้อมูลส่วนตัว',
+                  style: TextStyle(fontFamily: 'Prompt', fontSize: 18)),
               onTap: () {
                 Get.offAll(
                     () => const BottomNavigationBarExample(selectedIndex: 3));
@@ -140,9 +149,26 @@ class _DrawerMainState extends State<DrawerMain> {
                 width: 26,
                 height: 26,
               ),
-              title: const Text('ความรู้เรื่องโรค',style: TextStyle(fontFamily:'Prompt',fontSize: 18),),
+              title: const Text(
+                'ความรู้เรื่องโรค',
+                style: TextStyle(fontFamily: 'Prompt', fontSize: 18),
+              ),
               onTap: () {
                 Get.to(const ListDrug());
+              },
+            ),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/medicine1.png',
+                width: 26,
+                height: 26,
+              ),
+              title: const Text(
+                'ข้อมูลยา Drug Interaction',
+                style: TextStyle(fontFamily: 'Prompt', fontSize: 18),
+              ),
+              onTap: () {
+                Get.to(const Listpillsdrug());
               },
             ),
             ListTile(
@@ -151,7 +177,8 @@ class _DrawerMainState extends State<DrawerMain> {
                 width: 26,
                 height: 26,
               ),
-              title: const Text('Logout',style: TextStyle(fontFamily:'Prompt',fontSize: 18)),
+              title: const Text('Logout',
+                  style: TextStyle(fontFamily: 'Prompt', fontSize: 18)),
               onTap: () async {
                 try {
                   await _auth.signOut();

@@ -1,24 +1,35 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
+import 'package:mytest/widget/navbar_main.dart';
 
 // ignore: must_be_immutable
-class PopupNotify extends StatefulWidget {
+class Popupnotify extends StatefulWidget {
   int id;
-  PopupNotify({super.key, required this.id});
+  Popupnotify({super.key, required this.id});
 
   @override
-  State<PopupNotify> createState() => _PopupNotifyState();
+  State<Popupnotify> createState() => _PopupnotifyState();
 }
 
-class _PopupNotifyState extends State<PopupNotify> {
+class _PopupnotifyState extends State<Popupnotify> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final isLoading = StreamController<bool>();
+  String drugname = '';
+  String drugrange = '';
+  String drugnote = '';
+  String drugpertime = '';
+  String drugtime = '';
+  String drugdate = '';
 
-  String drugTime = '';
-
-    Future<void> queryData() async {
+  Future<void> queryData() async {
+    isLoading.add(true);
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await FirebaseFirestore.instance
             .collection("drugs")
@@ -28,14 +39,17 @@ class _PopupNotifyState extends State<PopupNotify> {
             .get();
 
     if (querySnapshot.docs.isNotEmpty) {
-      final data = querySnapshot.docs.first.data() as Map<String, dynamic>;
-      final drugTime = data['drug_time'] as String;
-
-      setState(() {
-        this.drugTime = drugTime;
-      });
+      final data = querySnapshot.docs.first.data();
+      drugname = data['drug_name'] as String;
+      drugrange = data['drug_range'] as String;
+      drugnote = data['drug_note'] as String;
+      drugpertime = data['drug_pertime'] as String;
+      drugtime = data['drug_time'] as String;
+      drugdate = data['drug_date'] as String;
     }
+    isLoading.add(false);
   }
+
   @override
   void initState() {
     super.initState();
@@ -45,85 +59,125 @@ class _PopupNotifyState extends State<PopupNotify> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '12.00 PM',
-              style: TextStyle(
-                  fontSize: 28,
-                  color: GlobalColors.mainColor,
-                  fontFamily: 'Prompt'),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            const CircleAvatar(
-              radius: 80,
-              backgroundImage: AssetImage('assets/images/pillspop.png'),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Text(
-              'Atorvastatin',
-              style: TextStyle(
-                  fontSize: 28,
-                  color: GlobalColors.mainColor,
-                  fontFamily: 'Prompt'),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'จำนวนยาที่ได้รับ  1 ครั้ง',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: GlobalColors.mainColor,
-                  fontFamily: 'Prompt'),
-            ),
-            const SizedBox(
-              height: 150,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Image(
-                      width: 80,
-                      image: AssetImage('assets/images/no.png'),
+      body: StreamBuilder<bool>(
+          initialData: true,
+          stream: isLoading.stream,
+          builder: (context, snapshot) {
+            if (snapshot.data!) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      drugdate,
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      LocalNotification().cancelNoti(id: widget.id);
-                    },
-                    child: const Image(
-                      width: 80,
-                      image: AssetImage('assets/images/yes.png'),
+                    Text(
+                      drugtime,
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
                     ),
-                  ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     print('d');
-                  //   },
-                  //   child: const Image(
-                  //     width: 80,
-                  //     image: AssetImage('assets/images/slip.png'),
-                  //   ),
-                  // )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    const CircleAvatar(
+                      radius: 80,
+                      backgroundImage: AssetImage('assets/images/pillspop.png'),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Text(
+                      drugname,
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'จำนวนยาที่ได้รับ $drugpertime ครั้ง',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
+                    ),
+                    const SizedBox(
+                      height: 150,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              LocalNotification().cancelNoti(id: widget.id);
+                              Get.to(() => const BottomNavigationBarExample(
+                                  selectedIndex: 1));
+                            },
+                            child: const Image(
+                              width: 80,
+                              image: AssetImage('assets/images/no.png'),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              FirebaseFirestore.instance
+                                  .collection("drugs")
+                                  .doc(_auth.currentUser?.email)
+                                  .collection("history")
+                                  .add({
+                                'history_name': drugname,
+                                'history_range': drugrange,
+                                'history_note': drugnote,
+                                'history_pertime': drugpertime,
+                                'history_time': drugtime,
+                                'history_date': drugdate,
+                              });
+
+                              FirebaseFirestore.instance
+                                  .collection("drugs")
+                                  .doc(_auth.currentUser?.email)
+                                  .collection("add_drug")
+                                  .where('notify_id',
+                                      isEqualTo: widget.id.toString())
+                                  .get()
+                                  .then((querySnapshot) {
+                                if (querySnapshot.docs.isNotEmpty) {
+                                  querySnapshot.docs.first.reference.delete();
+                                }
+                              });
+                              LocalNotification().cancelNoti(id: widget.id);
+                              Get.to(() => const BottomNavigationBarExample(
+                                  selectedIndex: 2));
+                            },
+                            child: const Image(
+                              width: 80,
+                              image: AssetImage('assets/images/yes.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }
+          }),
     );
   }
 }

@@ -117,30 +117,30 @@ class _NotifyState extends State<Notify> {
               // ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 55),
+                    minimumSize: const Size(double.infinity, 55),
                   ),
                   onPressed: () => LocalNotification().simpleNotificationShow(
-                      DateTime.now().add(Duration(seconds: 10)), 3),
-                  child: Text("Show Notification")),
+                      DateTime.now().add(const Duration(seconds: 10)), 3),
+                  child: const Text("Show Notification")),
               const SizedBox(
                 height: 24.0,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 55),
+                    minimumSize: const Size(double.infinity, 55),
                   ),
                   onPressed: () =>
                       LocalNotification().pendingNotificationRequests(),
-                  child: Text("getActive Noti")),
+                  child: const Text("getActive Noti")),
               const SizedBox(
                 height: 24.0,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 55),
+                    minimumSize: const Size(double.infinity, 55),
                   ),
                   onPressed: () => LocalNotification().cancelNoti(),
-                  child: Text("Cancel All Noti")),
+                  child: const Text("Cancel All Noti")),
             ],
           ),
         ),

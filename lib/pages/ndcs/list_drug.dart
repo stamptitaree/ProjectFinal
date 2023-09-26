@@ -77,7 +77,7 @@ class _ListDrugState extends State<ListDrug> {
                     itemBuilder: (context, index) {
                       DocumentSnapshot ncds = snapshot.data!.docs[index];
                       List<dynamic> dataArray =
-                          ncds['data']; // เข้าถึง array 'data'
+                          ncds['data']; 
 
                       // ทำการเลือกข้อมูลในแต่ละ Map และแสดงผล 'drug_list'
                       List<Widget> drugListWidgets = dataArray.map((dataMap) {
@@ -108,7 +108,7 @@ class _ListDrugState extends State<ListDrug> {
                                           AssetImage(diseaseImagePath),
                                     ),
                                   ),
-                                  SizedBox(width: 10,),
+                                  const SizedBox(width: 10,),
                                   Align(
                                     alignment: Alignment.center,
                                     child: Text(
@@ -123,24 +123,6 @@ class _ListDrugState extends State<ListDrug> {
                               ),
                             ),
                           ),
-                          // child: Container(
-                          //   width: sizeS.width,
-                          //   padding: const EdgeInsets.all(10.0),
-                          //   decoration: BoxDecoration(
-                          //       color: const Color.fromARGB(255, 74, 103, 117),
-                          //       borderRadius: BorderRadius.circular(8)),
-                          //   height: 100,
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       Text(
-                          //         disease_name,
-                          //         style: const TextStyle(
-                          //             fontSize: 14, color: Colors.white),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         );
                       }).toList();
 

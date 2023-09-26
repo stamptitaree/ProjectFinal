@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:mytest/Splash.view.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mytest/notify.dart';
-import 'package:mytest/pages/notificationpop/popup_notify.dart';
 import 'package:mytest/services/local_notification.dart';
 // import 'package:mytest/api/firebase_api.dart';
 // import 'package:mytest/notify.dart';

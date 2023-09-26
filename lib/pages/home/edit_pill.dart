@@ -505,7 +505,8 @@ class _EditpillState extends State<Editpill> {
                                   // ignore: use_build_context_synchronously
 
                                   final formattedTime =
-                                      "${pickedTime.hour}:${pickedTime.minute}";
+                                      // "${pickedTime.hour}:${pickedTime.minute}";
+                                      "${pickedTime.hour.toString().padLeft(2, '0')}:${pickedTime.minute.toString().padLeft(2, '0')}";
 
                                   setState(() {
                                     _timeEditingController.text = formattedTime;

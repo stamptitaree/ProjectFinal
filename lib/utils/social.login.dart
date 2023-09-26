@@ -18,7 +18,7 @@ class SocialLogin extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Get.to(Forgotpassword());
+                  Get.to(const Forgotpassword());
                 },
                 child: Text(
                   'ลืมรหัสผ่าน',
@@ -41,7 +41,7 @@ class SocialLogin extends StatelessWidget {
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  Get.to(Register());
+                  Get.to(const Register());
                 },
                 child: const Text(
                   'สมัครบัญชีผู้ใช้งาน',
