@@ -120,9 +120,12 @@ class _ListpillsdrugState extends State<Listpillsdrug> {
                             List<dynamic> dataArray = ncds['data'];
                             List<Widget> drugListWidgets =
                                 dataArray.map((dataMap) {
+                                  final drugName = dataMap['drug_list'].toString().toLowerCase();
+                                  final searchQuery = searchdrugController.text.toLowerCase();
+                              if(drugName.contains(searchQuery)){
                               return Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 12, right: 12, top: 10),
+                                    left: 12, right: 12, top: 5, bottom: 5),
                                 child: Container(
                                   // width: sizeS.width,
                                   padding: const EdgeInsets.all(8.0),
@@ -170,6 +173,9 @@ class _ListpillsdrugState extends State<Listpillsdrug> {
                                   ),
                                 ),
                               );
+                              }else {
+                                return Container();
+                              }
                             }).toList();
 
                             return Column(

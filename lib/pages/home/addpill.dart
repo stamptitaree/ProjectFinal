@@ -42,11 +42,11 @@ class _AddpillState extends State<Addpill> {
     // print(_dateEditingController.text);
     if (namepillController.text != '' &&
         _dateEditingController.text != '' &&
-        _timeEditingController.text != '') {
+        _timeEditingController.text != '' && daypillController.text != '') {
       _createDrug();
     } else if (namepillController.text == '' ||
         _dateEditingController.text == '' ||
-        _timeEditingController.text == '') {
+        _timeEditingController.text == '' || daypillController.text != '') {
       Fluttertoast.showToast(
         msg: "กรุณากรอกข้อมูลทุกช่อง",
         gravity: ToastGravity.BOTTOM,
