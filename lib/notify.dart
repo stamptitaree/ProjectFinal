@@ -120,7 +120,7 @@ class _NotifyState extends State<Notify> {
                     minimumSize: Size(double.infinity, 55),
                   ),
                   onPressed: () => LocalNotification().simpleNotificationShow(
-                      DateTime.now().add(Duration(seconds: 10)), 14),
+                      DateTime.now().add(Duration(seconds: 10)), 3),
                   child: Text("Show Notification")),
               const SizedBox(
                 height: 24.0,

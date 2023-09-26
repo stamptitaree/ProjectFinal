@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytest/pages/ndcs/list_image.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mytest/widget/buttom_main.dart';
@@ -88,6 +89,7 @@ class _ListDrugState extends State<ListDrug> {
                           child: PressableContainer(
                             onPressed: () {
                               print(dataMap);
+                              Get.to(() => Listimage(obj: dataMap));
                             },
                             child: Padding(
                               padding:
