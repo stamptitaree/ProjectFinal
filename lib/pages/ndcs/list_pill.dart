@@ -20,7 +20,7 @@ class _ListpillsdrugState extends State<Listpillsdrug> {
       appBar: AppBar(
         backgroundColor: GlobalColors.mainColor,
         title: const Center(
-            child: Text('ความรู้เรื่องโรค',
+            child: Text('ข้อมูลยา Drug Interaction',
                 style: TextStyle(fontFamily: 'Prompt'))),
         actions: <Widget>[
           IconButton(
