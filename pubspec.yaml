@@ -47,6 +47,13 @@ dependencies:
   cloud_firestore: ^4.8.4
   fluttertoast: ^8.2.2
   flutter_local_notifications: ^15.1.1
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/iconapp.png"
+  min_sdk_android: 21
 
 
 dev_dependencies:
@@ -97,6 +104,7 @@ flutter:
     - assets/images/slip.png
     - assets/images/yes.png
     - assets/images/no.png
+    - assets/images/pillsgif.gif
     - assets/icons/ความรู้โรค.png
     - assets/icons/เบาหวาน.png
     - assets/icons/หลอดเลือดสมอง.png
@@ -106,6 +114,7 @@ flutter:
     - assets/icons/โรคไต.png
     - assets/icons/มะเร็ง.png
     - assets/icons/โรคอ้วน.png
+
     
     
     

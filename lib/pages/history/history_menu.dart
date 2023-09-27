@@ -25,7 +25,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
             height: sizeS.height,
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('drugs')
+                    .collection('noti')
                     .doc(FirebaseAuth.instance.currentUser?.email)
                     .collection('history')
                     .snapshots(),
@@ -151,7 +151,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                                     .data!.docs[index].id;
                                                 // print(id);
                                                 FirebaseFirestore.instance
-                                                    .collection('drugs')
+                                                    .collection('noti')
                                                     .doc(FirebaseAuth.instance
                                                         .currentUser?.email)
                                                     .collection('history')

@@ -32,7 +32,7 @@ class _PopupnotifyState extends State<Popupnotify> {
     isLoading.add(true);
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
         await FirebaseFirestore.instance
-            .collection("drugs")
+            .collection("noti")
             .doc(_auth.currentUser?.email)
             .collection("add_drug")
             .where('notify_id', isEqualTo: widget.id.toString())
@@ -90,9 +90,19 @@ class _PopupnotifyState extends State<Popupnotify> {
                     const SizedBox(
                       height: 40,
                     ),
-                    const CircleAvatar(
-                      radius: 80,
-                      backgroundImage: AssetImage('assets/images/pillspop.png'),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle, 
+                        border: Border.all(
+                          color: Colors.black, 
+                          width: 3, 
+                        ),
+                      ),
+                      child: const CircleAvatar(
+                        radius: 80,
+                        backgroundImage:
+                            AssetImage('assets/images/pillsgif.gif'),
+                      ),
                     ),
                     const SizedBox(
                       height: 40,
@@ -110,7 +120,27 @@ class _PopupnotifyState extends State<Popupnotify> {
                     Text(
                       'จำนวนยาที่ได้รับ $drugpertime ครั้ง',
                       style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'ช่วงเวลา $drugrange ',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: GlobalColors.mainColor,
+                          fontFamily: 'Prompt'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'หมายเหตุ $drugnote ',
+                      style: TextStyle(
+                          fontSize: 16,
                           color: GlobalColors.mainColor,
                           fontFamily: 'Prompt'),
                     ),
@@ -137,7 +167,7 @@ class _PopupnotifyState extends State<Popupnotify> {
                           GestureDetector(
                             onTap: () {
                               FirebaseFirestore.instance
-                                  .collection("drugs")
+                                  .collection("noti")
                                   .doc(_auth.currentUser?.email)
                                   .collection("history")
                                   .add({
@@ -150,7 +180,7 @@ class _PopupnotifyState extends State<Popupnotify> {
                               });
 
                               FirebaseFirestore.instance
-                                  .collection("drugs")
+                                  .collection("noti")
                                   .doc(_auth.currentUser?.email)
                                   .collection("add_drug")
                                   .where('notify_id',

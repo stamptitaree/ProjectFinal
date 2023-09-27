@@ -54,7 +54,7 @@ class _EditpillState extends State<Editpill> {
 
         if (_uid.isNotEmpty) {
           DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
-              .collection("drugs")
+              .collection("noti")
               .doc(FirebaseAuth.instance.currentUser?.email)
               .collection('add_drug')
               .doc(widget.idEdit)
@@ -123,7 +123,7 @@ class _EditpillState extends State<Editpill> {
           String id =
               "${create_date.month.toString().padLeft(2, '9')}${(create_date.day).toString().padLeft(2, '0')}${create_date.hour}${create_date.minute.toString().padLeft(2, '0')}0";
           await FirebaseFirestore.instance
-              .collection("drugs")
+              .collection("noti")
               .doc(FirebaseAuth.instance.currentUser?.email)
               .collection('add_drug')
               .doc(widget.idEdit)
@@ -143,7 +143,7 @@ class _EditpillState extends State<Editpill> {
         }
       } else {
         await FirebaseFirestore.instance
-            .collection("drugs")
+            .collection("noti")
             .doc(FirebaseAuth.instance.currentUser?.email)
             .collection('add_drug')
             .doc(widget.idEdit)

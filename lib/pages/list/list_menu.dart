@@ -103,7 +103,7 @@ class _ListMenuState extends State<ListMenu> {
             height: sizeS.height,
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('drugs')
+                    .collection('noti')
                     .doc(FirebaseAuth.instance.currentUser?.email)
                     .collection('add_drug')
                     .where('drug_date',
@@ -187,13 +187,13 @@ class _ListMenuState extends State<ListMenu> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  'ชื่อยา ${(pill.data() as Map<String, dynamic>)['drug_name']}',
+                                                  'ชื่อยา : ${(pill.data() as Map<String, dynamic>)['drug_name']}',
                                                   style: const TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.white,
                                                       fontFamily: 'Prompt')),
                                               Text(
-                                                  'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
+                                                  'จำนวนยาที่ได้รับ : ${(pill.data() as Map<String, dynamic>)['drug_pertime']}',
                                                   style: const TextStyle(
                                                       fontSize: 16,
                                                       color: Colors.white,
@@ -247,7 +247,7 @@ class _ListMenuState extends State<ListMenu> {
                                                   pillData['notify_id'];
                                               // print(id);
                                               FirebaseFirestore.instance
-                                                  .collection('drugs')
+                                                  .collection('noti')
                                                   .doc(FirebaseAuth.instance
                                                       .currentUser?.email)
                                                   .collection('add_drug')

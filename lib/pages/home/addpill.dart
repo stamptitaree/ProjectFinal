@@ -71,7 +71,7 @@ class _AddpillState extends State<Addpill> {
         var date = DateTime.parse(_dateEditingController.text)
             .add(Duration(days: i * 1));
         await FirebaseFirestore.instance
-            .collection("drugs")
+            .collection("noti")
             .doc(_auth.currentUser?.email)
             .collection("add_drug")
             .add({
