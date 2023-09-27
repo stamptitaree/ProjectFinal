@@ -26,7 +26,7 @@ class _AddpillState extends State<Addpill> {
   List<String> listPeriod = <String>['เช้า', 'กลางวัน', 'เย็น', 'ก่อนนอน'];
   String? dropdownValuePeriod;
 
-  List<String> listDay = <String>['1', '3', '5', '7'];
+  List<String> listDay = <String>['1','2','3','4','5','6','7'];
   String? dropdownValueDay;
 
   List<String> listNote = <String>['ก่อนอาหาร', 'หลังอาหาร'];
@@ -508,7 +508,7 @@ class _AddpillState extends State<Addpill> {
               ),
               // InkWell(
               //   onTap: () {
-              //     LocalNotification().pendingNotificationRequests();
+              //     LocalNotification().cancelNoti();
               //   },
               //   child: Container(
               //     alignment: Alignment.center,

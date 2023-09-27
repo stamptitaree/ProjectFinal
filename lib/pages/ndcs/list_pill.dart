@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytest/pages/ndcs/list_pill_detail.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class Listpillsdrug extends StatefulWidget {
@@ -123,53 +124,67 @@ class _ListpillsdrugState extends State<Listpillsdrug> {
                                   final drugName = dataMap['drug_list'].toString().toLowerCase();
                                   final searchQuery = searchdrugController.text.toLowerCase();
                               if(drugName.contains(searchQuery)){
-                              return Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 12, right: 12, top: 5, bottom: 5),
-                                child: Container(
-                                  // width: sizeS.width,
-                                  padding: const EdgeInsets.all(8.0),
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(8)),
-                                  height: 120,
-                                  width: double.maxFinite,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: Text(
-                                          'drug : ${dataMap['drug_list']}',
+                              return GestureDetector(
+                                onTap: () {
+                                  print(dataMap['drug_list']);
+                                  Get.to(() => ListpillDetail(obj: dataMap));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 12, right: 12, top: 5, bottom: 5),
+                                  child: Container(
+                                    // width: sizeS.width,
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                        color: Color.fromARGB(255, 145, 113, 113),
+                                        borderRadius: BorderRadius.circular(8)),
+                                    height: 90,
+                                    width: double.maxFinite,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            'ยา : ${dataMap['drug_list']}',
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                                fontFamily: 'Prompt'),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        Text(
+                                          'ปฏิกิริยาระหว่างยา : ${dataMap['drug_inter_list']}',
                                           style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.white,
                                               fontFamily: 'Prompt'),
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                      ),
-                                      Text(
-                                        'drug inter : ${dataMap['drug_inter_list']}',
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.white,
-                                            fontFamily: 'Prompt'),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      // Text(
-                                      //     'เวลาทานยา : ${(pill.data() as Map<String, dynamic>)['history_time']}',
-                                      //     style: const TextStyle(
-                                      //         fontSize: 16,
-                                      //         color: Colors.white,
-                                      //         fontFamily: 'Prompt')),
-                                      // Text(
-                                      //     'หมายเหตุ : ${(pill.data() as Map<String, dynamic>)['history_note']}',
-                                      //     style: const TextStyle(
-                                      //         fontSize: 16,
-                                      //         color: Colors.white,
-                                      //         fontFamily: 'Prompt')),
-                                    ],
+                                        const Text(
+                                          'รายละเอียด : โปรดกดดูข้างใน!',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                              fontFamily: 'Prompt'),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        // Text(
+                                        //     'เวลาทานยา : ${(pill.data() as Map<String, dynamic>)['history_time']}',
+                                        //     style: const TextStyle(
+                                        //         fontSize: 16,
+                                        //         color: Colors.white,
+                                        //         fontFamily: 'Prompt')),
+                                        // Text(
+                                        //     'หมายเหตุ : ${(pill.data() as Map<String, dynamic>)['history_note']}',
+                                        //     style: const TextStyle(
+                                        //         fontSize: 16,
+                                        //         color: Colors.white,
+                                        //         fontFamily: 'Prompt')),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );

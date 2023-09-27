@@ -41,6 +41,7 @@ class AppNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User? user = FirebaseAuth.instance.currentUser;
+    print(user);
 
     if (user != null) {
       // ถ้าผู้ใช้ล็อคอินอยู่ ให้ไปที่หน้า BottomNavigationBarExample

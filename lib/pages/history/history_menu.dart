@@ -76,7 +76,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                         color: const Color.fromARGB(
                                             255, 114, 110, 110),
                                         borderRadius: BorderRadius.circular(8)),
-                                    height: 120,
+                                    height: 140,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -106,13 +106,19 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                    'ชื่อยา ${(pill.data() as Map<String, dynamic>)['history_name']}',
+                                                    'วันที่ : ${(pill.data() as Map<String, dynamic>)['history_date']}',
                                                     style: const TextStyle(
                                                         fontSize: 16,
                                                         color: Colors.white,
                                                         fontFamily: 'Prompt')),
                                                 Text(
-                                                    'จำนวนยาที่ได้รับ ${(pill.data() as Map<String, dynamic>)['history_pertime']}',
+                                                    'ชื่อยา : ${(pill.data() as Map<String, dynamic>)['history_name']}',
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.white,
+                                                        fontFamily: 'Prompt')),
+                                                Text(
+                                                    'จำนวนยาที่ได้รับ : ${(pill.data() as Map<String, dynamic>)['history_pertime']}',
                                                     style: const TextStyle(
                                                         fontSize: 16,
                                                         color: Colors.white,
@@ -181,7 +187,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                     alignment: Alignment.topRight,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
-                                          right: 20, top: 105),
+                                          right: 20, top: 125),
                                       child: Container(
                                         padding: const EdgeInsets.only(
                                             left: 10,
