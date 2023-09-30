@@ -37,13 +37,13 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController congenitalDiseaseController = TextEditingController();
 
-  List<String> list = <String>[
+  List<String> listNcds = <String>[
     'โรคเบาหวาน',
     'โรคหลอดเลือดสมอง',
     'โรคปอดอุดกั้นเรื้อรัง',
     'โรคความดันโลหิตสูง',
     'โรคไขมันในเลือดสูง',
-    'โรคไตเรื้อรัง'
+    'โรคไตเรื้อรัง',
     'โรคมะเร็ง'
   ];
   String? dropdownValue;
@@ -295,7 +295,7 @@ postDetailsToFirestore(User user) async {
                             diseaseNcdsController.text = ''; // Reset the controller if not valid
                           }
                         },
-                        items: list.map<DropdownMenuItem<String>>((String value) {
+                        items: listNcds.map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
