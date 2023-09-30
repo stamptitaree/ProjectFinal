@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/pages/home/select_pill.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
 
@@ -26,7 +27,7 @@ class _AddpillState extends State<Addpill> {
   List<String> listPeriod = <String>['เช้า', 'กลางวัน', 'เย็น', 'ก่อนนอน'];
   String? dropdownValuePeriod;
 
-  List<String> listDay = <String>['1','2','3','4','5','6','7'];
+  List<String> listDay = <String>['1', '2', '3', '4', '5', '6', '7'];
   String? dropdownValueDay;
 
   List<String> listNote = <String>['ก่อนอาหาร', 'หลังอาหาร'];
@@ -42,11 +43,13 @@ class _AddpillState extends State<Addpill> {
     // print(_dateEditingController.text);
     if (namepillController.text != '' &&
         _dateEditingController.text != '' &&
-        _timeEditingController.text != '' && daypillController.text != '') {
+        _timeEditingController.text != '' &&
+        daypillController.text != '') {
       _createDrug();
     } else if (namepillController.text == '' ||
         _dateEditingController.text == '' ||
-        _timeEditingController.text == '' || daypillController.text != '') {
+        _timeEditingController.text == '' ||
+        daypillController.text != '') {
       Fluttertoast.showToast(
         msg: "กรุณากรอกข้อมูลทุกช่อง",
         gravity: ToastGravity.BOTTOM,
@@ -58,18 +61,63 @@ class _AddpillState extends State<Addpill> {
 
   Future<void> _createDrug() async {
     try {
-      // notiId = Random().nextInt(99999999);
-      print(daypillController.text);
+      // final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+      //     .collection('noti')
+      //     .doc(_auth.currentUser?.email)
+      //     .collection("add_drug")
+      //     .where('drug_date',
+      //                   isEqualTo:
+      //                       DateFormat('yyyy-MM-dd').format(date))
+      //     .get();
+
+      // for (var doc in querySnapshot.docs) {
+      //   print(doc.data());
+      // }
+
+      // print(daypillController.text);
       print(_dateEditingController.text);
       // ignore: non_constant_identifier_names
       var create_date = DateTime.parse(
           "${_dateEditingController.text} ${_timeEditingController.text}:00");
 
       for (var i = 0; i < int.parse(daypillController.text); i++) {
+        // ignore: unused_local_variable
         String id =
             "${create_date.month.toString().padLeft(2, '9')}${(create_date.day + i).toString().padLeft(2, '0')}${create_date.hour}${create_date.minute.toString().padLeft(2, '0')}0";
         var date = DateTime.parse(_dateEditingController.text)
             .add(Duration(days: i * 1));
+        final queryDrug = await FirebaseFirestore.instance
+            .collection('drug_inter')
+            .doc('MilncD2OQeoS5VIUBa1W')
+            .get();
+        List drug_list = queryDrug['data'];
+
+        var drug_dt = drug_list
+            .where((element) => element['drug_list'] == namepillController.text)
+            .toList();
+        print(drug_dt);
+
+        final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection('noti')
+            .doc(_auth.currentUser?.email)
+            .collection("add_drug")
+            .where('drug_date',
+                isEqualTo: DateFormat('yyyy-MM-dd').format(date))
+            .get();
+
+        for (var doc in querySnapshot.docs) {
+          // print(doc.data());
+    
+          final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+          final String drugName = data['drug_name'] as String;
+          var qqq = drug_dt
+              .where((element) => element['drug_inter_list'] == drugName)
+              .toList();
+          print(qqq);
+   
+          
+        }
+
         await FirebaseFirestore.instance
             .collection("noti")
             .doc(_auth.currentUser?.email)
@@ -85,9 +133,9 @@ class _AddpillState extends State<Addpill> {
           'notify_id': id,
         });
       }
-      print("D: $create_date ${daypillController.text}");
-      LocalNotification().simpleNotificationShow(
-          create_date, int.parse(daypillController.text));
+
+      // LocalNotification().simpleNotificationShow(
+      //     create_date, int.parse(daypillController.text));
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
     } catch (e, s) {
       print(e);
@@ -157,6 +205,14 @@ class _AddpillState extends State<Addpill> {
                   Expanded(
                     child: TextFormField(
                       controller: namepillController,
+                      // readOnly: true,
+                      // onTap: () async {
+                      //   var data = await Get.to(() => Selectpills());
+                      //   if (data != null) {
+                      //     print(data);
+                      //     namepillController.text = data;
+                      //   }
+                      // },
                       decoration: InputDecoration(
                         // labelText: "Enter Email",
                         // fillColor: Colors.white,

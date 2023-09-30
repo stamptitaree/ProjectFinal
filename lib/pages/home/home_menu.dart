@@ -14,7 +14,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppbarMain(title: 'เมนู'),
+      appBar: AppbarMain(title: 'เมนู'),
       body: SafeArea(
           child: Center(
         child: SizedBox(
@@ -46,7 +46,8 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'เพิ่มยา',
-                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
+                          style:
+                              TextStyle(fontSize: 26.0, fontFamily: 'Prompt'),
                         ),
                       ),
                     ],
@@ -58,7 +59,8 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 1));
+                  Get.offAll(
+                      () => const BottomNavigationBarExample(selectedIndex: 1));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -76,7 +78,8 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'รายการยา',
-                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
+                          style:
+                              TextStyle(fontSize: 26.0, fontFamily: 'Prompt'),
                         ),
                       ),
                     ],
@@ -88,7 +91,8 @@ class HomeMenu extends StatelessWidget {
               // ),
               PressableContainer(
                 onPressed: () {
-                  Get.offAll(() => const BottomNavigationBarExample(selectedIndex: 2));
+                  Get.offAll(
+                      () => const BottomNavigationBarExample(selectedIndex: 2));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
@@ -106,7 +110,8 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'ประวัติยา',
-                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
+                          style:
+                              TextStyle(fontSize: 26.0, fontFamily: 'Prompt'),
                         ),
                       ),
                     ],
@@ -119,10 +124,8 @@ class HomeMenu extends StatelessWidget {
               PressableContainer(
                 onPressed: () {
                   Get.to(() => const ListDrug());
-                  
-            
-               },
-                child:  Padding(
+                },
+                child: Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Stack(
                     children: [
@@ -138,7 +141,8 @@ class HomeMenu extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           'ความรู้เรื่องโรค',
-                          style: TextStyle(fontSize: 26.0,fontFamily:'Prompt'),
+                          style:
+                              TextStyle(fontSize: 26.0, fontFamily: 'Prompt'),
                         ),
                       ),
                     ],
@@ -149,7 +153,7 @@ class HomeMenu extends StatelessWidget {
           ),
         ),
       )),
-      drawer:  const DrawerMain(),
+      drawer: const DrawerMain(),
     );
   }
 }
