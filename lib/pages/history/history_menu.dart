@@ -36,7 +36,33 @@ class _HistoryMenuState extends State<HistoryMenu> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  return snapshot.data!.size == 0
+
+                  // Convert the snapshot data to a list of DocumentSnapshot
+                  List<DocumentSnapshot> historyData = snapshot.data!.docs;
+
+                  // Sort the data based on 'history_date' and then 'history_time'
+                  historyData.sort((a, b) {
+                    String dateA =
+                        (a.data() as Map<String, dynamic>)['history_date'];
+                    String timeA =
+                        (a.data() as Map<String, dynamic>)['history_time'];
+                    String dateB =
+                        (b.data() as Map<String, dynamic>)['history_date'];
+                    String timeB =
+                        (b.data() as Map<String, dynamic>)['history_time'];
+
+                    // First, compare by 'history_date'
+                    int dateComparison = dateA.compareTo(dateB);
+
+                    // If 'history_date' is the same, compare by 'history_time'
+                    if (dateComparison == 0) {
+                      return timeA.compareTo(timeB);
+                    } else {
+                      return dateComparison;
+                    }
+                  });
+
+                  return historyData.isEmpty
                       ? Center(
                           child: Row(
                             children: [
@@ -61,9 +87,9 @@ class _HistoryMenuState extends State<HistoryMenu> {
                           scrollDirection: Axis.vertical,
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: snapshot.data!.size,
+                          itemCount: historyData.length,
                           itemBuilder: (context, index) {
-                            DocumentSnapshot pill = snapshot.data!.docs[index];
+                            DocumentSnapshot pill = historyData[index];
                             return Stack(
                               children: [
                                 Padding(
@@ -218,6 +244,5 @@ class _HistoryMenuState extends State<HistoryMenu> {
       ),
       drawer: const DrawerMain(),
     );
-  
   }
 }

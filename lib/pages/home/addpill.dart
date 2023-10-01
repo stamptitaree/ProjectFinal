@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:mytest/pages/home/select_pill.dart';
+// import 'package:mytest/pages/home/select_pill.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
+import 'package:mytest/widget/navbar_main.dart';
 
 class Addpill extends StatefulWidget {
   const Addpill({super.key});
@@ -61,19 +62,6 @@ class _AddpillState extends State<Addpill> {
 
   Future<void> _createDrug() async {
     try {
-      // final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-      //     .collection('noti')
-      //     .doc(_auth.currentUser?.email)
-      //     .collection("add_drug")
-      //     .where('drug_date',
-      //                   isEqualTo:
-      //                       DateFormat('yyyy-MM-dd').format(date))
-      //     .get();
-
-      // for (var doc in querySnapshot.docs) {
-      //   print(doc.data());
-      // }
-
       // print(daypillController.text);
       print(_dateEditingController.text);
       // ignore: non_constant_identifier_names
@@ -95,7 +83,7 @@ class _AddpillState extends State<Addpill> {
         var drug_dt = drug_list
             .where((element) => element['drug_list'] == namepillController.text)
             .toList();
-        print(drug_dt);
+        print('drug old : $drug_dt');
 
         final QuerySnapshot querySnapshot = await FirebaseFirestore.instance
             .collection('noti')
@@ -107,15 +95,90 @@ class _AddpillState extends State<Addpill> {
 
         for (var doc in querySnapshot.docs) {
           // print(doc.data());
-    
+
           final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
           final String drugName = data['drug_name'] as String;
           var qqq = drug_dt
               .where((element) => element['drug_inter_list'] == drugName)
               .toList();
-          print(qqq);
-   
-          
+
+          // ignore: unnecessary_null_comparison
+          if (qqq != null && qqq.isNotEmpty) {
+            print('drug new : ${qqq[0]['detail']}');
+            // ignore: use_build_context_synchronously, unused_local_variable
+            bool decide = await showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: const Color(0xFFBD0648).withOpacity(0.8),
+                    // title: Text("Do you want to change password?"),
+                    content: SizedBox(
+                      height: 400,
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 20,
+                              child: IconButton(
+                                color: const Color(0xFFBD0648),
+                                icon: const Icon(Icons.close),
+                                onPressed: () {
+                                  Navigator.pop(context, false);
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset('assets/images/Vector.png'),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text('Drug Interaction',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Prompt',
+                                      fontSize: 20)),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Image.asset('assets/images/Vector.png')
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            width: double.maxFinite,
+                            height: 260,
+                            padding: const EdgeInsets.all(16.0),
+                            decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 185, 148, 148),
+                              // borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Text(
+                                '${qqq[0]['detail']}',
+                                style: const TextStyle(
+                                    fontSize: 16, fontFamily: 'Prompt'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          }
         }
 
         await FirebaseFirestore.instance
@@ -134,9 +197,10 @@ class _AddpillState extends State<Addpill> {
         });
       }
 
-      // LocalNotification().simpleNotificationShow(
-      //     create_date, int.parse(daypillController.text));
+      LocalNotification().simpleNotificationShow(
+          create_date, int.parse(daypillController.text));
       Fluttertoast.showToast(msg: "เพิ่มยาสำเร็จ");
+      Get.to(() => const BottomNavigationBarExample(selectedIndex: 1));
     } catch (e, s) {
       print(e);
       print(s);

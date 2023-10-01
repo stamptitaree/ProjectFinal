@@ -78,7 +78,7 @@ class _PersonalMenuState extends State<PersonalMenu> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Do you want to change password?"),
+                title: Text("ต้องการเปลี่ยนรหัสผ่านใช่หรือไม่?"),
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -86,12 +86,12 @@ class _PersonalMenuState extends State<PersonalMenu> {
                         onPressed: () {
                           Navigator.pop(context, true);
                         },
-                        child: Text('Confirm')),
+                        child: Text('ใช่')),
                     ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context, false);
                         },
-                        child: Text('Cancel')),
+                        child: Text('ไม่ใช่')),
                   ],
                 ),
               );

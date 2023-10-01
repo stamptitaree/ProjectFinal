@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/pages/ndcs/list_pill_detail.dart';
+// import 'package:mytest/pages/ndcs/list_pill_detail.dart';
 import 'package:mytest/utils/global.colors.dart';
 
 class Selectpills extends StatefulWidget {

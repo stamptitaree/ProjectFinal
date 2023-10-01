@@ -97,7 +97,7 @@ class _EditpillState extends State<Editpill> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Do you want to change password?"),
+                title: const Text("ต้องการแก้ไขเวลาแจ้งเตือนใช่หรือไม่?" ,style: TextStyle(fontFamily: 'Prompt')),
                 content: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -105,12 +105,12 @@ class _EditpillState extends State<Editpill> {
                         onPressed: () {
                           Navigator.pop(context, true);
                         },
-                        child: Text('Confirm')),
+                        child: const Text('ใช่' ,style: TextStyle(fontFamily: 'Prompt'))),
                     ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context, false);
                         },
-                        child: Text('Cancel')),
+                        child: const Text('ไม่ใช่',style: TextStyle(fontFamily: 'Prompt'))),
                   ],
                 ),
               );

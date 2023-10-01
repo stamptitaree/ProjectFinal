@@ -117,7 +117,17 @@ class _ListMenuState extends State<ListMenu> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  return snapshot.data!.size == 0
+                  List<DocumentSnapshot> pillData = snapshot.data!.docs;
+
+                  // Sort the data based on 'drug_time' field
+                  pillData.sort((a, b) {
+                    String timeA =
+                        (a.data() as Map<String, dynamic>)['drug_time'];
+                    String timeB =
+                        (b.data() as Map<String, dynamic>)['drug_time'];
+                    return timeA.compareTo(timeB);
+                  });
+                  return pillData.isEmpty
                       ? Center(
                           child: Row(
                             children: [
@@ -142,9 +152,9 @@ class _ListMenuState extends State<ListMenu> {
                           scrollDirection: Axis.vertical,
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: snapshot.data!.size,
+                          itemCount: pillData.length,
                           itemBuilder: (context, index) {
-                            DocumentSnapshot pill = snapshot.data!.docs[index];
+                            DocumentSnapshot pill = pillData[index];
                             return GestureDetector(
                               onTap: () {},
                               child: Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:mytest/pages/notificationpop/popup_notify.dart';
-import 'package:mytest/widget/navbar_main.dart';
+// import 'package:mytest/widget/navbar_main.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 @pragma('vm:entry-point')
