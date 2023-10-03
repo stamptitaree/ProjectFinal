@@ -127,7 +127,7 @@ class _ListMenuState extends State<ListMenu> {
                         (b.data() as Map<String, dynamic>)['drug_time'];
                     return timeA.compareTo(timeB);
                   });
-                  return pillData.isEmpty
+                  return snapshot.data!.docs.isEmpty
                       ? Center(
                           child: Row(
                             children: [
@@ -152,9 +152,9 @@ class _ListMenuState extends State<ListMenu> {
                           scrollDirection: Axis.vertical,
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: pillData.length,
+                          itemCount: snapshot.data!.size,
                           itemBuilder: (context, index) {
-                            DocumentSnapshot pill = pillData[index];
+                            DocumentSnapshot pill = snapshot.data!.docs[index];
                             return GestureDetector(
                               onTap: () {},
                               child: Padding(
