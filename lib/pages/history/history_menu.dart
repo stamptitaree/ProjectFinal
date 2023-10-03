@@ -62,7 +62,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                     }
                   });
 
-                  return historyData.isEmpty
+                  return snapshot.data!.docs.isEmpty
                       ? Center(
                           child: Row(
                             children: [
@@ -87,9 +87,9 @@ class _HistoryMenuState extends State<HistoryMenu> {
                           scrollDirection: Axis.vertical,
                           physics: const ClampingScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: historyData.length,
+                          itemCount: snapshot.data!.size,
                           itemBuilder: (context, index) {
-                            DocumentSnapshot pill = historyData[index];
+                            DocumentSnapshot pill = snapshot.data!.docs[index];
                             return Stack(
                               children: [
                                 Padding(
