@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/widget/appbar_main.dart';
 import 'package:mytest/widget/drawer_main.dart';
 
@@ -13,6 +15,11 @@ class HistoryMenu extends StatefulWidget {
 }
 
 class _HistoryMenuState extends State<HistoryMenu> {
+  DateTime _selectedDate = DateTime.now();
+  final TextEditingController _dateEditingController = TextEditingController(
+      text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
+
+
   @override
   Widget build(BuildContext context) {
     var sizeS = MediaQuery.of(context).size;
@@ -20,6 +27,60 @@ class _HistoryMenuState extends State<HistoryMenu> {
       appBar: AppbarMain(title: 'ประวัติยา'),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(25, 20, 25, 5),
+            child: Row(
+              children: [
+                const Text('วันที่',
+                    style: TextStyle(fontFamily: 'Prompt', fontSize: 20)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: InkWell(
+                    onTap: () async {
+                      final DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: _selectedDate,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2030),
+                      );
+
+                      if (pickedDate != null) {
+                        _selectedDate = pickedDate;
+                        final formattedDate =
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
+                        setState(() {
+                          _dateEditingController.text = formattedDate;
+                        });
+                      }
+                    },
+                    child: IgnorePointer(
+                      child: TextFormField(
+                        controller: _dateEditingController,
+                        style: const TextStyle(
+                            color: Colors.black, fontFamily: 'Prompt'),
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: GlobalColors.borderInput,
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
               child: SizedBox(
             height: sizeS.height,
@@ -28,6 +89,9 @@ class _HistoryMenuState extends State<HistoryMenu> {
                     .collection('noti')
                     .doc(FirebaseAuth.instance.currentUser?.email)
                     .collection('history')
+                     .where('history_date',
+                        isEqualTo:
+                            DateFormat('yyyy-MM-dd').format(_selectedDate))
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {

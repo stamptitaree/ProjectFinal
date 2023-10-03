@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
+import 'package:mytest/widget/navbar_main.dart';
 
 // ignore: must_be_immutable
 class Editpill extends StatefulWidget {
@@ -162,6 +163,7 @@ class _EditpillState extends State<Editpill> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
       );
+      Get.to(() => const BottomNavigationBarExample(selectedIndex: 1));
     } catch (e) {
       print(e);
     }

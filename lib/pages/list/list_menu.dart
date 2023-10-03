@@ -98,6 +98,7 @@ class _ListMenuState extends State<ListMenu> {
               ],
             ),
           ),
+          
           Expanded(
               child: SizedBox(
             height: sizeS.height,
@@ -250,34 +251,33 @@ class _ListMenuState extends State<ListMenu> {
                                             onTap: () {
                                               String docIdToDelete =
                                                   snapshot.data!.docs[index].id;
-                                                  print(docIdToDelete);
-                                              // Map<String, dynamic> pillData =
-                                              //     pill.data()
-                                              //         as Map<String, dynamic>;
-                                              // String idNotify =
-                                              //     pillData['notify_id'];
-                                              // // print(id);
-                                              // FirebaseFirestore.instance
-                                              //     .collection('noti')
-                                              //     .doc(FirebaseAuth.instance
-                                              //         .currentUser?.email)
-                                              //     .collection('add_drug')
-                                              //     .doc(docIdToDelete)
-                                              //     .delete()
-                                              //     .then((_) {
-                                              //   LocalNotification().cancelNoti(
-                                              //       id: int.parse(idNotify));
-                                              //   Fluttertoast.showToast(
-                                              //       msg: "ลบรายการยาสำเร็จ");
-                                              // }).catchError((error) {
-                                              //   Fluttertoast.showToast(
-                                              //     msg:
-                                              //         "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
-                                              //     gravity: ToastGravity.BOTTOM,
-                                              //     backgroundColor: Colors.red,
-                                              //     textColor: Colors.white,
-                                              //   );
-                                              // });
+                                              Map<String, dynamic> pillData =
+                                                  pill.data()
+                                                      as Map<String, dynamic>;
+                                              String idNotify =
+                                                  pillData['notify_id'];
+                                              // print(id);
+                                              FirebaseFirestore.instance
+                                                  .collection('noti')
+                                                  .doc(FirebaseAuth.instance
+                                                      .currentUser?.email)
+                                                  .collection('add_drug')
+                                                  .doc(docIdToDelete)
+                                                  .delete()
+                                                  .then((_) {
+                                                LocalNotification().cancelNoti(
+                                                    id: int.parse(idNotify));
+                                                Fluttertoast.showToast(
+                                                    msg: "ลบรายการยาสำเร็จ");
+                                              }).catchError((error) {
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+                                                  gravity: ToastGravity.BOTTOM,
+                                                  backgroundColor: Colors.red,
+                                                  textColor: Colors.white,
+                                                );
+                                              });
                                             },
                                             child: const Icon(
                                               Icons.delete,
