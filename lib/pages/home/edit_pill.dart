@@ -132,7 +132,7 @@ class _EditpillState extends State<Editpill> {
             'drug_range': rangepillController.text,
             'drug_note': notepillController.text,
             'drug_day': daypillController.text,
-            'drug_pertime': _dateEditingController.text,
+            'drug_pertime': pertimepillController.text,
             'drug_time': _timeEditingController.text,
             'drug_date': _dateEditingController.text,
             'notify_id': id
