@@ -268,7 +268,7 @@ class _ListMenuState extends State<ListMenu> {
                                                             "ต้องการลบรายการยา \n${(pill.data() as Map<String, dynamic>)['drug_name']} ใช่หรือไม่?",
                                                             style: const TextStyle(
                                                                 fontFamily:
-                                                                    'Prompt')),
+                                                                    'Prompt',fontSize: 18)),
                                                         content: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
