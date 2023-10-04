@@ -19,7 +19,6 @@ class _HistoryMenuState extends State<HistoryMenu> {
   final TextEditingController _dateEditingController = TextEditingController(
       text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
 
-
   @override
   Widget build(BuildContext context) {
     var sizeS = MediaQuery.of(context).size;
@@ -89,7 +88,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                     .collection('noti')
                     .doc(FirebaseAuth.instance.currentUser?.email)
                     .collection('history')
-                     .where('history_date',
+                    .where('history_date',
                         isEqualTo:
                             DateFormat('yyyy-MM-dd').format(_selectedDate))
                     .snapshots(),
@@ -236,21 +235,72 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                               MainAxisAlignment.start,
                                           children: [
                                             GestureDetector(
-                                              onTap: () {
-                                                String docIdToDelete = snapshot
-                                                    .data!.docs[index].id;
-                                                // print(id);
-                                                FirebaseFirestore.instance
-                                                    .collection('noti')
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser?.email)
-                                                    .collection('history')
-                                                    .doc(docIdToDelete)
-                                                    .delete()
-                                                    .then((_) {
-                                                  Fluttertoast.showToast(
-                                                      msg: "ลบรายการยาสำเร็จ");
-                                                }).catchError((error) {
+                                              onTap: () async {
+                                                try {
+                                                  String docIdToDelete =
+                                                      snapshot
+                                                          .data!.docs[index].id;
+                                                  // print(id);
+                                                  bool decide =
+                                                      await showDialog(
+                                                          barrierDismissible:
+                                                              false,
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                              context) {
+                                                            return AlertDialog(
+                                                              title:  Text(
+                                                                  "ต้องการลบประวัติยา \n${(pill.data() as Map<String, dynamic>)['history_name']} ใช่หรือไม่?",
+                                                                  style: const TextStyle(
+                                                                      fontFamily:
+                                                                          'Prompt',fontSize: 18)),
+                                                              content: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceAround,
+                                                                children: [
+                                                                  ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context,
+                                                                            true);
+                                                                      },
+                                                                      child: const Text(
+                                                                          'ใช่',
+                                                                          style:
+                                                                              TextStyle(fontFamily: 'Prompt'))),
+                                                                  ElevatedButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Navigator.pop(
+                                                                            context,
+                                                                            false);
+                                                                      },
+                                                                      child: const Text(
+                                                                          'ไม่ใช่',
+                                                                          style:
+                                                                              TextStyle(fontFamily: 'Prompt'))),
+                                                                ],
+                                                              ),
+                                                            );
+                                                          });
+                                                  if (decide) {
+                                                    await FirebaseFirestore
+                                                        .instance
+                                                        .collection('noti')
+                                                        .doc(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            ?.email)
+                                                        .collection('history')
+                                                        .doc(docIdToDelete)
+                                                        .delete();
+                                                    Fluttertoast.showToast(
+                                                      msg: "ลบรายการยาสำเร็จ",
+                                                    );
+                                                  }
+                                                } catch (e) {
                                                   Fluttertoast.showToast(
                                                     msg:
                                                         "เกิดข้อผิดพลาดในการลบข้อมูล",
@@ -259,7 +309,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                                     backgroundColor: Colors.red,
                                                     textColor: Colors.white,
                                                   );
-                                                });
+                                                }
                                               },
                                               child: const Icon(
                                                 Icons.delete,

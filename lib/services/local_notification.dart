@@ -46,7 +46,7 @@ class LocalNotification {
 
   Future<void> initNotification() async {
     AndroidInitializationSettings initializationSettingsAndroid =
-        const AndroidInitializationSettings("mipmap/ic_launcher");
+        const AndroidInitializationSettings("mipmap/launcher_icon");
 
     DarwinInitializationSettings initializationIos =
         DarwinInitializationSettings(

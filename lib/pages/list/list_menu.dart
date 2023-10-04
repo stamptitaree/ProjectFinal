@@ -98,7 +98,6 @@ class _ListMenuState extends State<ListMenu> {
               ],
             ),
           ),
-          
           Expanded(
               child: SizedBox(
             height: sizeS.height,
@@ -248,28 +247,77 @@ class _ListMenuState extends State<ListMenu> {
                                           ),
                                           const SizedBox(height: 15),
                                           GestureDetector(
-                                            onTap: () {
-                                              String docIdToDelete =
-                                                  snapshot.data!.docs[index].id;
-                                              Map<String, dynamic> pillData =
-                                                  pill.data()
-                                                      as Map<String, dynamic>;
-                                              String idNotify =
-                                                  pillData['notify_id'];
-                                              // print(id);
-                                              FirebaseFirestore.instance
-                                                  .collection('noti')
-                                                  .doc(FirebaseAuth.instance
-                                                      .currentUser?.email)
-                                                  .collection('add_drug')
-                                                  .doc(docIdToDelete)
-                                                  .delete()
-                                                  .then((_) {
-                                                LocalNotification().cancelNoti(
-                                                    id: int.parse(idNotify));
-                                                Fluttertoast.showToast(
-                                                    msg: "ลบรายการยาสำเร็จ");
-                                              }).catchError((error) {
+                                            onTap: () async {
+                                              try {
+                                                String docIdToDelete = snapshot
+                                                    .data!.docs[index].id;
+                                                Map<String, dynamic> pillData =
+                                                    pill.data()
+                                                        as Map<String, dynamic>;
+                                                String idNotify =
+                                                    pillData['notify_id'];
+                                                // print(id);
+
+                                                bool decide = await showDialog(
+                                                    barrierDismissible: false,
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title:  Text(
+                                                            "ต้องการลบรายการยา \n${(pill.data() as Map<String, dynamic>)['drug_name']} ใช่หรือไม่?",
+                                                            style: const TextStyle(
+                                                                fontFamily:
+                                                                    'Prompt')),
+                                                        content: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context,
+                                                                      true);
+                                                                },
+                                                                child: const Text(
+                                                                    'ใช่',
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'Prompt'))),
+                                                            ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context,
+                                                                      false);
+                                                                },
+                                                                child: const Text(
+                                                                    'ไม่ใช่',
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'Prompt'))),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    });
+
+                                                if (decide) {
+                                                  FirebaseFirestore.instance
+                                                      .collection('noti')
+                                                      .doc(FirebaseAuth.instance
+                                                          .currentUser?.email)
+                                                      .collection('add_drug')
+                                                      .doc(docIdToDelete)
+                                                      .delete();
+
+                                                  LocalNotification()
+                                                      .cancelNoti(
+                                                          id: int.parse(
+                                                              idNotify));
+                                                  Fluttertoast.showToast(
+                                                      msg: "ลบรายการยาสำเร็จ");
+                                                }
+                                              } catch (e) {
                                                 Fluttertoast.showToast(
                                                   msg:
                                                       "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
@@ -277,7 +325,7 @@ class _ListMenuState extends State<ListMenu> {
                                                   backgroundColor: Colors.red,
                                                   textColor: Colors.white,
                                                 );
-                                              });
+                                              }
                                             },
                                             child: const Icon(
                                               Icons.delete,
