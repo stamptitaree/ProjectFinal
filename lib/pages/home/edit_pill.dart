@@ -129,7 +129,7 @@ class _EditpillState extends State<Editpill> {
               .collection('add_drug')
               .doc(widget.idEdit)
               .update({
-            'drug_name': namepillController.text,
+            'drug_name': (namepillController.text).trim(),
             'drug_range': rangepillController.text,
             'drug_note': notepillController.text,
             'drug_day': daypillController.text,

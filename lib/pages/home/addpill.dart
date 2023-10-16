@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mytest/services/local_notification.dart';
 import 'package:mytest/utils/global.colors.dart';
 import 'package:mytest/widget/navbar_main.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Addpill extends StatefulWidget {
   const Addpill({super.key});
@@ -39,6 +40,7 @@ class _AddpillState extends State<Addpill> {
   final _formKey = GlobalKey<FormState>();
   // final String a = 'a';
   // int notiId = 0;
+  final player = AudioPlayer();
 
   Future<void> validateValue() async {
     // print(_dateEditingController.text);
@@ -62,7 +64,7 @@ class _AddpillState extends State<Addpill> {
 
   Future<void> _createDrug() async {
     try {
-      // print(daypillController.text);
+      // print('จำนวนวัน: ${daypillController.text}');
       print(_dateEditingController.text);
       // ignore: non_constant_identifier_names
       var create_date = DateTime.parse(
@@ -104,7 +106,25 @@ class _AddpillState extends State<Addpill> {
 
           // ignore: unnecessary_null_comparison
           if (qqq != null && qqq.isNotEmpty) {
-            print('drug new : ${qqq[0]['detail']}');
+            print('AVD ${qqq[0]['drug_list']}');
+            // print('drug new : ${qqq[0]['detail']}');
+
+            if (qqq[0]['drug_list'] == 'Cisapride') {
+              player.play(AssetSource('sound/FurosemideCisapride.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Dofetilide'){
+              player.play(AssetSource('sound/FurosemideDofetilide.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Ceritinib'){
+              player.play(AssetSource('sound/Propranolol Ceritinib.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Dronedarone'){
+              player.play(AssetSource('sound/HCTZ (Hydrochlorothiazide) Dronedarone.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Amprenavir'){
+              player.play(AssetSource('sound/Simvastatin  Amprenavir.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Benazepril'){
+              player.play(AssetSource('sound/Spironolactone Benazepril.mp3'));
+            }else if(qqq[0]['drug_list'] == 'Apixaban'){
+              player.play(AssetSource('sound/Warfarin Apixaban.mp3'));
+            }
+
             // ignore: use_build_context_synchronously, unused_local_variable
             bool decide = await showDialog(
                 barrierDismissible: false,
@@ -117,19 +137,48 @@ class _AddpillState extends State<Addpill> {
                       height: 400,
                       child: Column(
                         children: [
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 20,
-                              child: IconButton(
-                                color: const Color(0xFFBD0648),
-                                icon: const Icon(Icons.close),
-                                onPressed: () {
-                                  Navigator.pop(context, false);
-                                },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Align(
+                                alignment: Alignment.topRight,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  radius: 20,
+                                ),
                               ),
-                            ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 20,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      player.pause();
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/sound.png',
+                                      width: 24, 
+                                      height: 24,
+                                      color: const Color(0xFF000000)),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 20,
+                                  child: IconButton(
+                                    color: const Color(0xFFBD0648),
+                                    icon: const Icon(Icons.close),
+                                    onPressed: () {
+                                      Navigator.pop(context, false);
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(
                             height: 30,
@@ -186,7 +235,7 @@ class _AddpillState extends State<Addpill> {
             .doc(_auth.currentUser?.email)
             .collection("add_drug")
             .add({
-          'drug_name': namepillController.text,
+          'drug_name': (namepillController.text).trim(),
           'drug_range': rangepillController.text,
           'drug_note': notepillController.text,
           'drug_day': daypillController.text,
@@ -248,8 +297,7 @@ class _AddpillState extends State<Addpill> {
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
         actionsIconTheme: const IconThemeData(
-          color:
-              Colors.transparent, // Set the color of the action icons to white
+          color: Colors.transparent,
         ),
       ),
       body: SingleChildScrollView(
@@ -411,49 +459,115 @@ class _AddpillState extends State<Addpill> {
                 ],
               ),
               const SizedBox(height: 10),
+              // Row(
+              //   children: [
+              //     const Text('จำนวนวัน',
+              //         style: TextStyle(fontFamily: 'Prompt')),
+              //     const SizedBox(width: 10),
+              //     Expanded(
+              //       child: Container(
+              //         height: 56,
+              //         padding: const EdgeInsets.only(top: 3, left: 15),
+              //         decoration: BoxDecoration(
+              //           borderRadius:
+              //               const BorderRadius.all(Radius.circular(10)),
+              //           border: Border.all(color: GlobalColors.borderInput),
+              //         ),
+              //         child: DropdownButton<String>(
+              //           hint: const Text('เลือกจำนวนวัน',
+              //               style: TextStyle(fontFamily: 'Prompt')),
+              //           isExpanded: true,
+              //           value: dropdownValueDay,
+              //           // icon: const Icon(Icons.arrow_downward),
+              //           elevation: 16,
+              //           style: TextStyle(
+              //               color: GlobalColors.textColor,
+              //               fontFamily: 'Prompt'),
+              //           underline: Container(),
+              //           onChanged: (String? value) {
+              //             // This is called when the user selects an item.
+              //             setState(() {
+              //               dropdownValueDay = value!;
+              //             });
+              //             if (value != null && value.isNotEmpty) {
+              //               daypillController.text = value;
+              //             } else {
+              //               daypillController.text = '';
+              //             }
+              //           },
+              //           items: listDay
+              //               .map<DropdownMenuItem<String>>((String value) {
+              //             return DropdownMenuItem<String>(
+              //               value: value,
+              //               child: Text(value),
+              //             );
+              //           }).toList(),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+
               Row(
                 children: [
                   const Text('จำนวนวัน',
                       style: TextStyle(fontFamily: 'Prompt')),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Container(
-                      height: 56,
-                      padding: const EdgeInsets.only(top: 3, left: 15),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(color: GlobalColors.borderInput),
-                      ),
-                      child: DropdownButton<String>(
-                        hint: const Text('เลือกจำนวนวัน',
-                            style: TextStyle(fontFamily: 'Prompt')),
-                        isExpanded: true,
-                        value: dropdownValueDay,
-                        // icon: const Icon(Icons.arrow_downward),
-                        elevation: 16,
-                        style: TextStyle(
-                            color: GlobalColors.textColor,
-                            fontFamily: 'Prompt'),
-                        underline: Container(),
-                        onChanged: (String? value) {
-                          // This is called when the user selects an item.
+                    child: InkWell(
+                      onTap: () async {
+                        final DateTimeRange? pickedDate =
+                            await showDateRangePicker(
+                          context: context,
+                          // initialDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime(2030),
+                        );
+                        if (pickedDate != null) {
+                          final startDateTime = pickedDate.start;
+                          final endDateTime = pickedDate.end;
+
+                          // คำนวณจำนวนวัน
+                          final daysDifference =
+                              endDateTime.difference(startDateTime).inDays;
+
+                          // คำนวณเดือนและวันที่
+                          final startMonth = startDateTime.month;
+                          final endMonth = endDateTime.month;
+
                           setState(() {
-                            dropdownValueDay = value!;
+                            if (startMonth == endMonth) {
+                              // อยู่ในเดือนเดียวกัน
+                              daypillController.text = '$daysDifference';
+                            } else {
+                              // อยู่ในเดือนต่างกัน
+                              daypillController.text = '$daysDifference';
+                            }
                           });
-                          if (value != null && value.isNotEmpty) {
-                            daypillController.text = value;
-                          } else {
-                            daypillController.text = '';
-                          }
-                        },
-                        items: listDay
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
+                        }
+                      },
+                      child: IgnorePointer(
+                        child: TextFormField(
+                          controller: daypillController,
+                          style: const TextStyle(
+                              color: Colors.black, fontFamily: 'Prompt'),
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                color: GlobalColors.borderInput,
+                                width: 1.0,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                color: GlobalColors.borderInput,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
