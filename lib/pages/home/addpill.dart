@@ -109,19 +109,19 @@ class _AddpillState extends State<Addpill> {
             print('AVD ${qqq[0]['drug_list']}');
             // print('drug new : ${qqq[0]['detail']}');
 
-            if (qqq[0]['drug_list'] == 'Cisapride') {
+            if (qqq[0]['drug_list'] == 'Cisapride' || qqq[0]['drug_inter_list'] == 'Cisapride') {
               player.play(AssetSource('sound/FurosemideCisapride.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Dofetilide'){
+            }else if(qqq[0]['drug_list'] == 'Dofetilide' || qqq[0]['drug_inter_list'] == 'Dofetilide'){
               player.play(AssetSource('sound/FurosemideDofetilide.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Ceritinib'){
+            }else if(qqq[0]['drug_list'] == 'Ceritinib' || qqq[0]['drug_inter_list'] == 'Ceritinib'){
               player.play(AssetSource('sound/Propranolol Ceritinib.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Dronedarone'){
+            }else if(qqq[0]['drug_list'] == 'Dronedarone' || qqq[0]['drug_inter_list'] == 'Dronedarone'){
               player.play(AssetSource('sound/HCTZ (Hydrochlorothiazide) Dronedarone.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Amprenavir'){
+            }else if(qqq[0]['drug_list'] == 'Amprenavir'|| qqq[0]['drug_inter_list'] == 'Amprenavir'){
               player.play(AssetSource('sound/Simvastatin  Amprenavir.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Benazepril'){
+            }else if(qqq[0]['drug_list'] == 'Benazepril'|| qqq[0]['drug_inter_list'] == 'Benazepril'){
               player.play(AssetSource('sound/Spironolactone Benazepril.mp3'));
-            }else if(qqq[0]['drug_list'] == 'Apixaban'){
+            }else if(qqq[0]['drug_list'] == 'Apixaban'|| qqq[0]['drug_inter_list'] == 'Apixaban'){
               player.play(AssetSource('sound/Warfarin Apixaban.mp3'));
             }
 
