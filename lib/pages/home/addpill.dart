@@ -124,7 +124,7 @@ class _AddpillState extends State<Addpill> {
             }else if(qqq[0]['drug_list'] == 'Apixaban'|| qqq[0]['drug_inter_list'] == 'Apixaban'){
               player.play(AssetSource('sound/Warfarin Apixaban.mp3'));
             }
-
+            
             // ignore: use_build_context_synchronously, unused_local_variable
             bool decide = await showDialog(
                 barrierDismissible: false,
@@ -173,6 +173,7 @@ class _AddpillState extends State<Addpill> {
                                     color: const Color(0xFFBD0648),
                                     icon: const Icon(Icons.close),
                                     onPressed: () {
+                                      player.pause();
                                       Navigator.pop(context, false);
                                     },
                                   ),
