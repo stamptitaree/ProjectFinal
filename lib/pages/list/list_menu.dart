@@ -199,7 +199,7 @@ class _ListMenuState extends State<ListMenu> {
                                               Text(
                                                   'ชื่อยา : ${(pill.data() as Map<String, dynamic>)['drug_name']}',
                                                   style: const TextStyle(
-                                                      fontSize: 16,
+                                                      fontSize: 14,
                                                       color: Colors.white,
                                                       fontFamily: 'Prompt')),
                                               Text(

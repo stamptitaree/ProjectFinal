@@ -203,7 +203,7 @@ class _HistoryMenuState extends State<HistoryMenu> {
                                                 Text(
                                                     'ชื่อยา : ${(pill.data() as Map<String, dynamic>)['history_name']}',
                                                     style: const TextStyle(
-                                                        fontSize: 16,
+                                                        fontSize: 14,
                                                         color: Colors.white,
                                                         fontFamily: 'Prompt')),
                                                 Text(
